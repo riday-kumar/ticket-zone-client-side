@@ -9,7 +9,7 @@ const RootLayout = () => {
       <div className="custom-container">
         <Outlet></Outlet>
       </div>
-      <footer className="bg-primary h-50">
+      <footer className="bg-primary">
         <Footer></Footer>
       </footer>
     </div>
