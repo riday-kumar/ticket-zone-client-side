@@ -1,4 +1,5 @@
 import FeaturedTickets from "../FeaturedTickets/FeaturedTickets";
+import LatestTickets from "../LatestTickets/LatestTickets";
 import Slider from "../Slider/Slider";
 import "swiper/css";
 const Home = () => {
@@ -6,6 +7,7 @@ const Home = () => {
     <div className="">
       <Slider></Slider>
       <FeaturedTickets></FeaturedTickets>
+      <LatestTickets></LatestTickets>
     </div>
   );
 };

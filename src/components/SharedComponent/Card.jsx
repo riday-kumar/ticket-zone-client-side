@@ -9,14 +9,18 @@ const Card = () => {
           src="https://i.ibb.co.com/b5Nd7CYN/Kuakata-Sea-Beach-Picture.jpg"
           alt="Shoes"
         />
-        <div className="absolute top-2 left-2 badge badge-error text-white font-semibold">
+        <div className="absolute top-2 right-2 badge badge-error text-white font-semibold">
           Featured
+        </div>
+        {/* price */}
+        <div className="font-bold absolute bottom-2 left-2 badge badge-primary text-white">
+          <span>৳ 1100 / Sit</span> <br />
         </div>
       </figure>
       <div className="card-body">
         {/* ticket title */}
         <h2 className="card-title text-primary text-[26px] font-bold">
-          Dhaka to Kuakata
+          Sohag Express
         </h2>
         {/* destination */}
         <p className="mb-3 flex items-center gap-3 text-info text-[20px] font-semibold">
@@ -24,9 +28,13 @@ const Card = () => {
         </p>
         <div className="card-actions space-y-3">
           {/* ticket for and how many sits */}
-          <div className="flex gap-3 *:text-[18px] *:text-white">
-            <div className="badge badge-primary font-semibold">Bus</div>
-            <div className="badge badge-success">100 seats left</div>
+          <div className="flex gap-3 *:text-white">
+            <div className="badge badge-primary font-semibold text-[18px]">
+              Bus
+            </div>
+            <div className="badge badge-success text-[16px]">
+              100 seats left
+            </div>
           </div>
           {/* features like - ac, breakfast */}
           <div className="flex gap-2">

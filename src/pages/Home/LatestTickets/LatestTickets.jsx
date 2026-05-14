@@ -1,12 +1,12 @@
 import SectionHeading from "../../../components/SectionHeading";
 import Card from "../../../components/SharedComponent/Card";
 
-const FeaturedTickets = () => {
+const LatestTickets = () => {
   return (
-    <div className="my-20">
+    <div>
       <SectionHeading
-        heading="Featured Tickets"
-        subheading="Best deals for your next journey"
+        heading="Latest Tickets"
+        subheading="New travel deals just for you"
       ></SectionHeading>
       <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-5">
         <Card></Card>
@@ -18,4 +18,4 @@ const FeaturedTickets = () => {
   );
 };
 
-export default FeaturedTickets;
+export default LatestTickets;
