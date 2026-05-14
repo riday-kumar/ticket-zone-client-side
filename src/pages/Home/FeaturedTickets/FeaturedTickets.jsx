@@ -3,7 +3,7 @@ import Card from "../../../components/SharedComponent/Card";
 
 const FeaturedTickets = () => {
   return (
-    <div className="my-20">
+    <div className="">
       <SectionHeading
         heading="Featured Tickets"
         subheading="Best deals for your next journey"
