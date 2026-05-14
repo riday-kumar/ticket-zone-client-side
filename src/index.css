@@ -59,3 +59,38 @@
   color: #fff;
   text-decoration: none;
 }
+
+.swiper-slide img {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+}
+
+.btn-slide-btn {
+  background-image: linear-gradient(
+    to right,
+    #ff512f 0%,
+    #dd2476 51%,
+    #ff512f 100%
+  );
+}
+
+.btn-slide-btn {
+  margin: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+  outline: none;
+  border: none;
+}
+
+.btn-slide-btn:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}

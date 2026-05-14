@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 const Navbar = () => {
   return (
-    <div className="bg-base-100 shadow-sm sticky top-0">
+    <div className="bg-white z-50 shadow-sm sticky top-0">
       <div className="navbar custom-container">
         <div className="navbar-start">
           <div className="dropdown">
