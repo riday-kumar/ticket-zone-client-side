@@ -8,19 +8,7 @@
 }
 
 .custom-container {
-  @apply md:w-11/12 xl:w-10/12 mx-auto;
-}
-
-.custom-btn {
-  background-image: linear-gradient(
-    to right,
-    #1a2980 0%,
-    #26d0ce 51%,
-    #1a2980 100%
-  );
-  text-transform: uppercase;
-  transition: 0.5s;
-  box-shadow: 0 0 20px #eee;
+  @apply max-md:px-3 md:w-11/12 xl:w-10/12 mx-auto;
 }
 
 .logo-color {
@@ -43,7 +31,6 @@
 }
 
 .btn-grad {
-  margin: 10px;
   text-align: center;
   text-transform: uppercase;
   transition: 0.5s;
@@ -59,7 +46,7 @@
   color: #fff;
   text-decoration: none;
 }
-
+/* slider */
 .swiper-slide img {
   width: 100%;
   height: 700px;
@@ -94,3 +81,22 @@
   color: #fff;
   text-decoration: none;
 }
+
+/* custom heading style */
+.custom-head {
+  @apply text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary uppercase;
+}
+
+/* hover effect */
+.element {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.element:hover {
+  transform: scale(1) translateY(-5px);
+  box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* shine */

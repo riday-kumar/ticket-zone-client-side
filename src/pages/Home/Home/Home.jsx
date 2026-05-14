@@ -1,11 +1,11 @@
+import FeaturedTickets from "../FeaturedTickets/FeaturedTickets";
 import Slider from "../Slider/Slider";
 import "swiper/css";
-import Loading from "../../../components/SharedComponent/Loading";
 const Home = () => {
   return (
-    <div>
+    <div className="">
       <Slider></Slider>
-      <Loading></Loading>
+      <FeaturedTickets></FeaturedTickets>
     </div>
   );
 };
