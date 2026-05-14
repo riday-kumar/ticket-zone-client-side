@@ -15,7 +15,7 @@ const Slider = () => {
       slidesPerView={1}
       pagination={true}
       loop={true}
-      // autoplay={{ delay: 2000 }}
+      autoplay={{ delay: 2000 }}
       effect="fade"
     >
       <SwiperSlide>

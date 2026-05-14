@@ -9,7 +9,7 @@ const SliderText = ({ img, heading, para }) => {
           {heading}
         </h1>
         <p className="text-2xl font-medium text-[#F5F5F5]">{para}</p>
-        <button className="btn btn-slide-btn">Click here</button>
+        <button className="btn btn-slide-btn">Explore Now</button>
       </div>
     </div>
   );
