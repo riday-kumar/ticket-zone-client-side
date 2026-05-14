@@ -1,6 +1,9 @@
+import { Link } from "react-router";
+import Logo from "./Logo";
+
 const Navbar = () => {
   return (
-    <div className="bg-base-100 shadow-sm">
+    <div className="bg-base-100 shadow-sm sticky top-0">
       <div className="navbar custom-container">
         <div className="navbar-start">
           <div className="dropdown">
@@ -23,54 +26,55 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex="-1"
-              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="text-primary menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a>Item 1</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
+                <Link to="/about">About</Link>
               </li>
               <li>
-                <a>Item 3</a>
+                <Link to="/contact">Contact</Link>
+              </li>
+              <li>
+                <Link
+                  className="btn btn-sm btn-outline btn-primary"
+                  to="/login"
+                >
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link className="btn btn-sm btn-grad" to="/register">
+                  Register
+                </Link>
               </li>
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <Logo></Logo>
         </div>
+        {/* desktop */}
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
+          <ul className="menu menu-horizontal px-1 font-semibold text-[18px] text-primary">
             <li>
-              <a>Item 1</a>
+              <Link to="/">Home</Link>
             </li>
             <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2 bg-base-100 w-40 z-1">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
+              <Link to="/about">About</Link>
             </li>
             <li>
-              <a>Item 3</a>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
-          <a className="btn">Button</a>
+        <div className="max-md:hidden navbar-end gap-2">
+          <Link className="btn btn-sm btn-outline btn-primary" to="/login">
+            Login
+          </Link>
+          <Link className="btn btn-sm btn-grad" to="/register">
+            Register
+          </Link>
         </div>
       </div>
     </div>

@@ -10,3 +10,52 @@
 .custom-container {
   @apply md:w-11/12 xl:w-10/12 mx-auto;
 }
+
+.custom-btn {
+  background-image: linear-gradient(
+    to right,
+    #1a2980 0%,
+    #26d0ce 51%,
+    #1a2980 100%
+  );
+  text-transform: uppercase;
+  transition: 0.5s;
+  box-shadow: 0 0 20px #eee;
+}
+
+.logo-color {
+  background-image: linear-gradient(
+    to right,
+    #1a2980 0%,
+    #26d0ce 51%,
+    #1a2980 100%
+  );
+  background-size: 200% auto;
+}
+
+.btn-grad {
+  background-image: linear-gradient(
+    to right,
+    #1a2980 0%,
+    #26d0ce 51%,
+    #1a2980 100%
+  );
+}
+
+.btn-grad {
+  margin: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  outline: none;
+  border: none;
+}
+
+.btn-grad:hover {
+  background-position: right center;
+  color: #fff;
+  text-decoration: none;
+}
