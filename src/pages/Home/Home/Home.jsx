@@ -1,3 +1,4 @@
+import ChooseUs from "../ChooseUs/ChooseUs";
 import FeaturedTickets from "../FeaturedTickets/FeaturedTickets";
 import LatestTickets from "../LatestTickets/LatestTickets";
 import PopularRoad from "../PopularRoad/PopularRoad";
@@ -10,6 +11,7 @@ const Home = () => {
       <FeaturedTickets></FeaturedTickets>
       <LatestTickets></LatestTickets>
       <PopularRoad></PopularRoad>
+      <ChooseUs></ChooseUs>
     </div>
   );
 };
