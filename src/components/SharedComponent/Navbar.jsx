@@ -66,6 +66,9 @@ const Navbar = () => {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
+            <li>
+              <Link to="/dashboard">Dashboard</Link>
+            </li>
           </ul>
         </div>
         <div className="max-md:hidden navbar-end gap-2">
