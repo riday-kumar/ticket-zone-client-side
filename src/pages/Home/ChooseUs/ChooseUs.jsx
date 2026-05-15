@@ -76,10 +76,10 @@ const ChooseUs = () => {
           {features.map((feature) => (
             <div
               key={feature.id}
-              className={`card shadow-md transition-all duration-300 hover:-translate-y-2 cursor-pointer
+              className={`hover:bg-primary  card shadow-md transition-all duration-300 hover:-translate-y-2 cursor-pointer
               ${feature.active ? "bg-primary text-white" : "bg-base-100"}`}
             >
-              <div className="card-body space-y-4">
+              <div className="card-body space-y-4 hover:*:text-white">
                 <div
                   className={`text-4xl ${
                     feature.active ? "text-white" : "text-primary"

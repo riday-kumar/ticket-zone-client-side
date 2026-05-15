@@ -9,6 +9,10 @@
   --color-secondary: teal;
 }
 
+.custom-bg {
+  background-color: #e6f0fc;
+}
+
 .custom-container {
   @apply max-md:px-3 md:w-11/12 xl:w-10/12 mx-auto;
 }
