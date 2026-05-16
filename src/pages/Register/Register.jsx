@@ -4,20 +4,30 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useForm } from "react-hook-form";
 
 const Register = () => {
   const { signUpWithEmail, googleLogin } = useAuth();
   // console.log(signUpWithEmail);
   const axiosSecure = useAxiosSecure();
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   const navigate = useNavigate();
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+  const handleRegister = (data) => {
+    // e.preventDefault();
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
     const newUser = { name, email };
+
+    // console.log(data);
+
     signUpWithEmail(email, password)
       .then((res) => {
         if (res.user) {
@@ -89,31 +99,62 @@ const Register = () => {
           Log in
         </Link>
       </p>
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleSubmit(handleRegister)}>
         <fieldset className="fieldset border-base-300 rounded-box ">
           <label className="label">Name</label>
           <input
             type="text"
             name="name"
+            {...register("name", { required: true })}
             className="input w-full"
             placeholder="Name"
           />
+          {errors.name?.type === "required" && (
+            <span className="text-red-500 font-semibold">Name is required</span>
+          )}
 
           <label className="label">Email</label>
           <input
             type="email"
             name="email"
+            {...register("email", {
+              required: true,
+              pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            })}
             className="input w-full"
             placeholder="Email"
           />
+          {errors.email?.type === "required" && (
+            <span className="text-red-500 font-semibold">
+              Email is required
+            </span>
+          )}
+          {errors.email?.type === "pattern" && (
+            <span className="text-red-500 font-semibold">Invalid Email</span>
+          )}
 
           <label className="label">Password</label>
           <input
             type="password"
             name="password"
+            {...register("password", {
+              required: true,
+              pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{6,}$/,
+            })}
             className="input w-full"
             placeholder="Password"
           />
+          {errors.password?.type === "required" && (
+            <span className="text-red-500 font-semibold">
+              Password is required
+            </span>
+          )}
+          {errors.password?.type === "pattern" && (
+            <span className="text-red-500 font-semibold">
+              Password must contain uppercase, lowercase, number, special
+              character and minimum 6 characters
+            </span>
+          )}
           <Link className="text-blue-500 font-medium mt-3">
             Forget Password?
           </Link>
