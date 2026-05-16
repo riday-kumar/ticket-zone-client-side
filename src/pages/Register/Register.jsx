@@ -1,10 +1,11 @@
 import { FaPlaneDeparture } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const { signUpWithEmail, googleLogin } = useAuth();
@@ -18,6 +19,7 @@ const Register = () => {
   } = useForm();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleRegister = (data) => {
     // e.preventDefault();
@@ -34,14 +36,17 @@ const Register = () => {
           axiosSecure.post("/users", newUser).then((data) => {
             console.log(data);
             if (data.data.acknowledged) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Sign up Successfully",
-                showConfirmButton: false,
-                timer: 1500,
+              toast.success("Sign up Successfully!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
               });
-              navigate("/");
+              navigate(location.state || "/");
             }
           });
         }
@@ -49,14 +54,17 @@ const Register = () => {
       .catch((err) => {
         console.log(err.message);
         if (err.message == "Firebase: Error (auth/email-already-in-use).") {
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "User Already Exists. Please Log in",
-            showConfirmButton: false,
-            timer: 1500,
+          toast.error("User Already Exists. Please Log in!", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
           });
-          navigate("/login");
+          navigate(location.state || "/");
         }
       });
   };
@@ -79,7 +87,7 @@ const Register = () => {
                 showConfirmButton: false,
                 timer: 1500,
               });
-              navigate("/");
+              navigate(location.state || "/");
             }
           });
         }

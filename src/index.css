@@ -9,6 +9,10 @@
   --color-secondary: teal;
 }
 
+a.active {
+  color: #ff512f;
+}
+
 .custom-bg {
   background-color: #e6f0fc;
 }

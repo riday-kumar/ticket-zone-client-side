@@ -17,6 +17,7 @@ import RequestedBookings from "../pages/Dashboard/RequestedBookings/RequestedBoo
 import ManageTickets from "../pages/Dashboard/ManageTickets/ManageTickets";
 import UsersManagement from "../pages/Dashboard/UsersManagement/UsersManagement";
 import AdvertiseTickets from "../pages/Dashboard/AdvertiseTickets/AdvertiseTickets";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +52,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    Component: DashboardLayout,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,

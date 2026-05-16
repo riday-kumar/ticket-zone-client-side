@@ -1,16 +1,18 @@
 import { useForm } from "react-hook-form";
 import { FaPlaneDeparture } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const { signInWithEmail, googleLogin } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const {
     register,
@@ -24,14 +26,17 @@ const Login = () => {
 
     signInWithEmail(email, password).then((res) => {
       if (res.user) {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Sign up Successfully",
-          showConfirmButton: false,
-          timer: 1500,
+        toast.success("Login Successful!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
         });
-        navigate("/");
+        navigate(location.state || "/");
       }
     });
   };
@@ -47,14 +52,17 @@ const Login = () => {
           axiosSecure.post("/users", newUser).then((data) => {
             // console.log(data);
             if (data.data.acknowledged || data.data === "user already exists") {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Log in Successfully",
-                showConfirmButton: false,
-                timer: 1500,
+              toast.success("Login Successful!", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
               });
-              navigate("/");
+              navigate(location.state || "/");
             }
           });
         }

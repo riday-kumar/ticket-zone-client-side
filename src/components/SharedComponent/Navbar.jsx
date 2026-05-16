@@ -1,7 +1,30 @@
-import { Link } from "react-router";
+import { NavLink } from "react-router";
 import Logo from "./Logo";
+import useAuth from "../../hooks/useAuth";
+import Loading from "./Loading";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
+  const { user, loading, logOut } = useAuth();
+  // console.log(user);
+
+  const handleLogOut = () => {
+    logOut().then(() => {
+      toast.success("Log Out Successfully!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    });
+  };
+  if (loading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="bg-white z-50 shadow-sm sticky top-0">
       <div className="navbar custom-container">
@@ -29,55 +52,126 @@ const Navbar = () => {
               className="text-primary menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <Link to="/">Home</Link>
+                <NavLink to="/">Home</NavLink>
               </li>
               <li>
-                <Link to="/about">About</Link>
+                <NavLink to="/about">About</NavLink>
               </li>
               <li>
-                <Link to="/contact">Contact</Link>
+                <NavLink to="/contact">Contact</NavLink>
               </li>
-              <li>
-                <Link
-                  className="btn btn-sm btn-outline btn-primary"
-                  to="/login"
-                >
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link className="btn btn-sm btn-grad" to="/register">
-                  Register
-                </Link>
-              </li>
+              {user ? (
+                <>
+                  <li>
+                    <NavLink to="/dashboard/my-profile">Profile</NavLink>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="btn btn-sm bg-red-600 text-white"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <NavLink
+                      className="btn btn-sm btn-outline btn-primary"
+                      to="/login"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink className="btn btn-sm btn-grad" to="/register">
+                      Register
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <Logo></Logo>
+          {user && (
+            <img
+              className="absolute right-3 md:hidden animate-pulse rounded-full border-2 border-primary w-10"
+              src={user?.photoURL}
+              alt=""
+            />
+          )}
         </div>
         {/* desktop */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-semibold text-[18px] text-primary">
             <li>
-              <Link to="/">Home</Link>
+              <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <NavLink to="/about">About</NavLink>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <NavLink to="/contact">Contact</NavLink>
             </li>
             <li>
-              <Link to="/dashboard">Dashboard</Link>
+              <NavLink to="/dashboard">Dashboard</NavLink>
             </li>
           </ul>
         </div>
         <div className="max-md:hidden navbar-end gap-2">
-          <Link className="btn btn-sm btn-outline btn-primary" to="/login">
-            Login
-          </Link>
-          <Link className="btn btn-sm btn-grad" to="/register">
-            Register
-          </Link>
+          {user ? (
+            <>
+              <div className="dropdown dropdown-end">
+                <div
+                  tabIndex={0}
+                  role="button"
+                  className="btn btn-ghost btn-circle avatar"
+                >
+                  <div className="w-10 rounded-full">
+                    <img
+                      className="animate-pulse rounded-full border-2 border-primary w-10"
+                      src={user?.photoURL}
+                      alt=""
+                    />
+                  </div>
+                </div>
+                <ul
+                  tabIndex="-1"
+                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+                >
+                  <li>
+                    <NavLink
+                      to="/dashboard/my-profile"
+                      className="text-[18px] font-medium mb-2 text-center"
+                    >
+                      My Profile
+                    </NavLink>
+                  </li>
+                  <li>
+                    <button
+                      onClick={handleLogOut}
+                      className="btn btn-sm bg-red-600 text-white"
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </div>
+            </>
+          ) : (
+            <>
+              <NavLink
+                className="btn btn-sm btn-outline btn-primary"
+                to="/login"
+              >
+                Login
+              </NavLink>
+              <NavLink className="btn btn-sm btn-grad" to="/register">
+                Register
+              </NavLink>
+            </>
+          )}
         </div>
       </div>
     </div>
