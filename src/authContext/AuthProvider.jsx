@@ -13,23 +13,23 @@ const googleProvider = new GoogleAuthProvider();
 
 const AuthProvider = ({ children }) => {
   const signUpWithEmail = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password);
+    return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signInWithEmail = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password);
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   const emailVerify = () => {
-    sendEmailVerification(auth.currentUser);
+    return sendEmailVerification(auth.currentUser);
   };
 
   const logOut = () => {
-    signOut(auth);
+    return signOut(auth);
   };
 
   const googleLogin = () => {
-    signInWithPopup(auth, googleProvider);
+    return signInWithPopup(auth, googleProvider);
   };
 
   const value = {
