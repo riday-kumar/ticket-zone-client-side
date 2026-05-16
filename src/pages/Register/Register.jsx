@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 
 const Register = () => {
   const { signUpWithEmail, googleLogin } = useAuth();
-  // console.log(signUpWithEmail);
+
   const axiosSecure = useAxiosSecure();
 
   const {
