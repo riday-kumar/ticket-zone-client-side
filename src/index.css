@@ -10,7 +10,7 @@
 }
 
 a.active {
-  color: #ff512f;
+  @apply bg-primary text-accent;
 }
 
 .custom-bg {

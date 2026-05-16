@@ -1,4 +1,10 @@
-import { Link, Outlet } from "react-router";
+import { FaHome, FaMoneyBillWave, FaUserCircle, FaUsers } from "react-icons/fa";
+import { FaClockRotateLeft, FaFileLines } from "react-icons/fa6";
+import { RiAdvertisementFill } from "react-icons/ri";
+import { MdAddBox } from "react-icons/md";
+import { TbFileSettingsFilled } from "react-icons/tb";
+import { HiHandRaised } from "react-icons/hi2";
+import { NavLink, Outlet } from "react-router";
 
 const DashboardLayout = () => {
   return (
@@ -45,55 +51,137 @@ const DashboardLayout = () => {
         <div className="flex min-h-full flex-col items-start bg-base-200 is-drawer-close:w-14 is-drawer-open:w-64">
           {/* Sidebar content here */}
           <ul className="menu w-full grow">
-            {/* List item */}
+            {/* Dashboard Home Page */}
             <li>
-              <Link
+              <NavLink
                 to="/"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Homepage"
+                data-tip="Dashboard Home"
               >
                 {/* Home icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-4"
-                >
-                  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path>
-                  <path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                </svg>
-                <span className="is-drawer-close:hidden">Homepage</span>
-              </Link>
+                <FaHome className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Dashboard Home</span>
+              </NavLink>
             </li>
 
-            {/* List item */}
+            {/* My Profile */}
             <li>
-              <button
+              <NavLink
+                to="/dashboard/my-profile"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Settings"
+                data-tip="My Profile"
               >
-                {/* Settings icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-4"
-                >
-                  <path d="M20 7h-9"></path>
-                  <path d="M14 17H5"></path>
-                  <circle cx="17" cy="17" r="3"></circle>
-                  <circle cx="7" cy="7" r="3"></circle>
-                </svg>
-                <span className="is-drawer-close:hidden">Settings</span>
-              </button>
+                {/* user icon */}
+                <FaUserCircle className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">My Profile</span>
+              </NavLink>
+            </li>
+
+            {/* My Bookings */}
+            <li>
+              <NavLink
+                to="/dashboard/my-bookings"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Bookings"
+              >
+                {/* user icon */}
+                <FaMoneyBillWave className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">My Bookings</span>
+              </NavLink>
+            </li>
+
+            {/* Payment History */}
+            <li>
+              <NavLink
+                to="/dashboard/payments"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Payment History"
+              >
+                {/* user icon */}
+                <FaClockRotateLeft className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Payment History</span>
+              </NavLink>
+            </li>
+            {/* ------------------- Vendor -------------------- */}
+
+            {/* Add Ticket */}
+            <li>
+              <NavLink
+                to="/dashboard/add-ticket"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Add Ticket"
+              >
+                {/* add icon */}
+                <MdAddBox className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Add Ticket</span>
+              </NavLink>
+            </li>
+
+            {/* My Ticket */}
+            <li>
+              <NavLink
+                to="/dashboard/my-tickets"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Ticket"
+              >
+                <FaFileLines className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">My Ticket</span>
+              </NavLink>
+            </li>
+
+            {/* Requested Bookings */}
+            <li>
+              <NavLink
+                to="/dashboard/requested-bookings"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="requested-bookings"
+              >
+                <HiHandRaised className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">
+                  Requested Bookings
+                </span>
+              </NavLink>
+            </li>
+
+            {/* ------------------- admin------------------- */}
+
+            {/* Manage Ticket */}
+            <li>
+              <NavLink
+                to="/dashboard/manage-ticket"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Manage Ticket"
+              >
+                {/* user icon */}
+                <TbFileSettingsFilled className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Manage Ticket</span>
+              </NavLink>
+            </li>
+
+            {/* Advertise Ticket */}
+            <li>
+              <NavLink
+                to="/dashboard/advertise-tickets"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Advertise Ticket"
+              >
+                {/* user icon */}
+                <RiAdvertisementFill className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Advertise Ticket</span>
+              </NavLink>
+            </li>
+
+            {/* Users Management */}
+            <li>
+              <NavLink
+                to="/dashboard/manage-users"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Users Management"
+              >
+                {/* user icon */}
+                <FaUsers className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Users Management</span>
+              </NavLink>
             </li>
           </ul>
         </div>

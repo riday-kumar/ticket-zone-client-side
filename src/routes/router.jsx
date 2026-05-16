@@ -18,6 +18,7 @@ import ManageTickets from "../pages/Dashboard/ManageTickets/ManageTickets";
 import UsersManagement from "../pages/Dashboard/UsersManagement/UsersManagement";
 import AdvertiseTickets from "../pages/Dashboard/AdvertiseTickets/AdvertiseTickets";
 import PrivateRoute from "./PrivateRoute";
+import MyTickets from "../pages/Dashboard/MyTickets/MyTickets";
 
 export const router = createBrowserRouter([
   {
@@ -81,7 +82,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "my-tickets",
-        Component: AllTicket,
+        Component: MyTickets,
       },
       {
         path: "requested-bookings",
