@@ -34,7 +34,7 @@ const DashboardLayout = () => {
               <path d="M14 10l2 2l-2 2"></path>
             </svg>
           </label>
-          <div className="px-4">Navbar Title</div>
+          <div className="px-4 font-bold">DashBoard</div>
         </nav>
         {/* Page content here */}
         <div className="p-4">
