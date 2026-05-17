@@ -18,6 +18,7 @@ import UsersManagement from "../pages/Dashboard/UsersManagement/UsersManagement"
 import AdvertiseTickets from "../pages/Dashboard/AdvertiseTickets/AdvertiseTickets";
 import PrivateRoute from "./PrivateRoute";
 import MyTickets from "../pages/Dashboard/MyTickets/MyTickets";
+import VendorRoute from "./VendorRoute";
 
 export const router = createBrowserRouter([
   {
@@ -77,15 +78,27 @@ export const router = createBrowserRouter([
       // vendor
       {
         path: "add-ticket",
-        Component: AddTicket,
+        element: (
+          <VendorRoute>
+            <AddTicket></AddTicket>
+          </VendorRoute>
+        ),
       },
       {
         path: "my-tickets",
-        Component: MyTickets,
+        element: (
+          <VendorRoute>
+            <MyTickets></MyTickets>
+          </VendorRoute>
+        ),
       },
       {
         path: "requested-bookings",
-        Component: RequestedBookings,
+        element: (
+          <VendorRoute>
+            <RequestedBookings></RequestedBookings>
+          </VendorRoute>
+        ),
       },
       // admin
       {

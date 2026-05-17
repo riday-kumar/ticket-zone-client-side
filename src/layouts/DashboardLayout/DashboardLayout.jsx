@@ -5,8 +5,10 @@ import { MdAddBox } from "react-icons/md";
 import { TbFileSettingsFilled } from "react-icons/tb";
 import { HiHandRaised } from "react-icons/hi2";
 import { NavLink, Outlet } from "react-router";
+import useCheckUserRole from "../../hooks/useCheckUserRole";
 
 const DashboardLayout = () => {
+  const { role } = useCheckUserRole();
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -104,44 +106,48 @@ const DashboardLayout = () => {
             </li>
             {/* ------------------- Vendor -------------------- */}
 
-            {/* Add Ticket */}
-            <li>
-              <NavLink
-                to="/dashboard/add-ticket"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Add Ticket"
-              >
-                {/* add icon */}
-                <MdAddBox className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">Add Ticket</span>
-              </NavLink>
-            </li>
+            {role === "vendor" && (
+              <>
+                {/* Add Ticket */}
+                <li>
+                  <NavLink
+                    to="/dashboard/add-ticket"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Add Ticket"
+                  >
+                    {/* add icon */}
+                    <MdAddBox className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">Add Ticket</span>
+                  </NavLink>
+                </li>
 
-            {/* My Ticket */}
-            <li>
-              <NavLink
-                to="/dashboard/my-tickets"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="My Ticket"
-              >
-                <FaFileLines className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">My Ticket</span>
-              </NavLink>
-            </li>
+                {/* My Ticket */}
+                <li>
+                  <NavLink
+                    to="/dashboard/my-tickets"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="My Ticket"
+                  >
+                    <FaFileLines className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">My Ticket</span>
+                  </NavLink>
+                </li>
 
-            {/* Requested Bookings */}
-            <li>
-              <NavLink
-                to="/dashboard/requested-bookings"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="requested-bookings"
-              >
-                <HiHandRaised className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">
-                  Requested Bookings
-                </span>
-              </NavLink>
-            </li>
+                {/* Requested Bookings */}
+                <li>
+                  <NavLink
+                    to="/dashboard/requested-bookings"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="requested-bookings"
+                  >
+                    <HiHandRaised className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Requested Bookings
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
 
             {/* ------------------- admin------------------- */}
 
