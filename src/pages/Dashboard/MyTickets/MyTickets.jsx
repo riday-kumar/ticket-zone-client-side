@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 const MyTickets = () => {
   const { user } = useAuth();
   const email = user?.email;
@@ -12,7 +13,7 @@ const MyTickets = () => {
 
   const [selectedTicket, setSelectedTicket] = useState(null);
 
-  const modalRef = useRef("modalRef");
+  const modalRef = useRef(null);
 
   const { register, handleSubmit, reset } = useForm();
 
@@ -88,16 +89,38 @@ const MyTickets = () => {
     e.preventDefault();
     modalRef.current.close();
   };
+
+  const handleDeleteTicket = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/tickets/${id}`).then((res) => {
+          if (res.data.deletedCount === 1) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your ticket has been deleted.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <div className="max-w-7xl mx-auto px-4 py-10">
         {/* Heading */}
         <div className="text-center mb-10">
           <h2 className="text-4xl font-bold">My Added Tickets</h2>
-
-          <p className="text-gray-500 mt-2">
-            Manage all your added transport tickets easily.
-          </p>
         </div>
 
         {/* Grid */}
@@ -174,6 +197,7 @@ const MyTickets = () => {
 
                     <button
                       disabled={isRejected}
+                      onClick={() => handleDeleteTicket(ticket._id)}
                       className="btn btn-error btn-sm text-white"
                     >
                       Delete
@@ -245,7 +269,6 @@ const MyTickets = () => {
                 <label className="font-semibold">Transport Type</label>
 
                 <select
-                  value={selectedTicket?.transportType}
                   {...register("transportType")}
                   className="select select-bordered w-full mt-1"
                 >
