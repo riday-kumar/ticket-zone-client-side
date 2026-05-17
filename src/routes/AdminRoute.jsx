@@ -9,7 +9,7 @@ const AdminRoute = ({ children }) => {
   const { roleLoading, role } = useCheckUserRole();
 
   if (loading || roleLoading) {
-    <Loading></Loading>;
+    return <Loading></Loading>;
   }
 
   if (role !== "admin") {

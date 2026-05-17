@@ -9,7 +9,7 @@ const AdvertiseTickets = () => {
   const { data: advertiseTickets = [], refetch } = useQuery({
     queryKey: ["advertiseTickets"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/advertise-tickets");
+      const res = await axiosSecure.get("/approved-tickets");
       return res.data;
     },
   });
