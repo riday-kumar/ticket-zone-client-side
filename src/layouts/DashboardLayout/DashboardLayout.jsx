@@ -150,45 +150,54 @@ const DashboardLayout = () => {
             )}
 
             {/* ------------------- admin------------------- */}
+            {role === "admin" && (
+              <>
+                {/* Manage Ticket */}
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-ticket"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Manage Ticket"
+                  >
+                    {/* user icon */}
+                    <TbFileSettingsFilled className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Manage Ticket
+                    </span>
+                  </NavLink>
+                </li>
 
-            {/* Manage Ticket */}
-            <li>
-              <NavLink
-                to="/dashboard/manage-ticket"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Manage Ticket"
-              >
-                {/* user icon */}
-                <TbFileSettingsFilled className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">Manage Ticket</span>
-              </NavLink>
-            </li>
+                {/* Advertise Ticket */}
+                <li>
+                  <NavLink
+                    to="/dashboard/advertise-tickets"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Advertise Ticket"
+                  >
+                    {/* user icon */}
+                    <RiAdvertisementFill className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Advertise Ticket
+                    </span>
+                  </NavLink>
+                </li>
 
-            {/* Advertise Ticket */}
-            <li>
-              <NavLink
-                to="/dashboard/advertise-tickets"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Advertise Ticket"
-              >
-                {/* user icon */}
-                <RiAdvertisementFill className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">Advertise Ticket</span>
-              </NavLink>
-            </li>
-
-            {/* Users Management */}
-            <li>
-              <NavLink
-                to="/dashboard/manage-users"
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Users Management"
-              >
-                {/* user icon */}
-                <FaUsers className="my-1.5 inline-block size-4" />
-                <span className="is-drawer-close:hidden">Users Management</span>
-              </NavLink>
-            </li>
+                {/* Users Management */}
+                <li>
+                  <NavLink
+                    to="/dashboard/manage-users"
+                    className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                    data-tip="Users Management"
+                  >
+                    {/* user icon */}
+                    <FaUsers className="my-1.5 inline-block size-4" />
+                    <span className="is-drawer-close:hidden">
+                      Users Management
+                    </span>
+                  </NavLink>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

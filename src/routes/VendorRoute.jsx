@@ -1,7 +1,7 @@
-import { Navigate } from "react-router";
 import useAuth from "../hooks/useAuth";
 import useCheckUserRole from "../hooks/useCheckUserRole";
 import Loading from "../components/SharedComponent/Loading";
+import Forbidden from "../components/Forbidden";
 
 const VendorRoute = ({ children }) => {
   const { loading } = useAuth();
@@ -12,7 +12,7 @@ const VendorRoute = ({ children }) => {
   }
 
   if (role !== "vendor") {
-    return <Navigate to="/"></Navigate>;
+    return <Forbidden></Forbidden>;
   }
 
   return children;

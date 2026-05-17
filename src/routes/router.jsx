@@ -19,6 +19,8 @@ import AdvertiseTickets from "../pages/Dashboard/AdvertiseTickets/AdvertiseTicke
 import PrivateRoute from "./PrivateRoute";
 import MyTickets from "../pages/Dashboard/MyTickets/MyTickets";
 import VendorRoute from "./VendorRoute";
+import AdminRoute from "./AdminRoute";
+import Forbidden from "../components/Forbidden";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +50,10 @@ export const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+      {
+        path: "forbidden",
+        Component: Forbidden,
       },
     ],
   },
@@ -103,15 +109,27 @@ export const router = createBrowserRouter([
       // admin
       {
         path: "manage-ticket",
-        Component: ManageTickets,
+        element: (
+          <AdminRoute>
+            <ManageTickets></ManageTickets>
+          </AdminRoute>
+        ),
       },
       {
         path: "manage-users",
-        Component: UsersManagement,
+        element: (
+          <AdminRoute>
+            <UsersManagement></UsersManagement>
+          </AdminRoute>
+        ),
       },
       {
         path: "advertise-tickets",
-        Component: AdvertiseTickets,
+        element: (
+          <AdminRoute>
+            <AdvertiseTickets></AdvertiseTickets>
+          </AdminRoute>
+        ),
       },
     ],
   },

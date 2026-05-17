@@ -27,17 +27,19 @@ const UsersManagement = () => {
       confirmButtonText: "Yes, Accept it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/users/${id}?role=admin`).then((res) => {
-          // console.log(res);
-          if (res.data.modifiedCount === 1) {
-            refetch();
-            Swal.fire({
-              title: "Admin",
-              text: "All the best for the Role",
-              icon: "success",
-            });
-          }
-        });
+        axiosSecure
+          .patch(`/users/${id}?role=admin?email=${user.email}`)
+          .then((res) => {
+            // console.log(res);
+            if (res.data.modifiedCount === 1) {
+              refetch();
+              Swal.fire({
+                title: "Admin",
+                text: "All the best for the Role",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };
@@ -53,17 +55,19 @@ const UsersManagement = () => {
       confirmButtonText: "Yes, Accept it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.patch(`/users/${id}?role=vendor`).then((res) => {
-          // console.log(res);
-          if (res.data.modifiedCount === 1) {
-            refetch();
-            Swal.fire({
-              title: "Vendor",
-              text: "New Vendor Added",
-              icon: "success",
-            });
-          }
-        });
+        axiosSecure
+          .patch(`/users/${id}?role=vendor?email=${user.email}`)
+          .then((res) => {
+            // console.log(res);
+            if (res.data.modifiedCount === 1) {
+              refetch();
+              Swal.fire({
+                title: "Vendor",
+                text: "New Vendor Added",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };
