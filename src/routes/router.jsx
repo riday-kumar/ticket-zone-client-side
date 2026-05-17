@@ -12,7 +12,6 @@ import MyProfile from "../pages/Dashboard/MyProfile/MyProfile";
 import MyBookings from "../pages/Dashboard/MyBookings/MyBookings";
 import PaymentHistory from "../pages/Dashboard/Payment/PaymentHistory";
 import AddTicket from "../pages/Dashboard/AddTicket/AddTicket";
-import AllTicket from "../pages/Dashboard/AllTicket/AllTicket";
 import RequestedBookings from "../pages/Dashboard/RequestedBookings/RequestedBookings";
 import ManageTickets from "../pages/Dashboard/ManageTickets/ManageTickets";
 import UsersManagement from "../pages/Dashboard/UsersManagement/UsersManagement";
