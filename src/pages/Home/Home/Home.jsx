@@ -17,16 +17,19 @@ const Home = () => {
   }, [axiosSecure]);
 
   useEffect(() => {
-    axiosSecure("/approved-tickets").then((res) => {
+    axiosSecure("/approved-tickets?type=all-type").then((res) => {
       setLatestTickets(res.data);
     });
   }, [axiosSecure]);
+
+  const fewTickets = latestTickets.slice(0, 8);
+  console.log(fewTickets);
 
   return (
     <div className="*:mb-20">
       <Slider></Slider>
       <FeaturedTickets advertiseTickets={advertiseTickets}></FeaturedTickets>
-      <LatestTickets latestTickets={latestTickets}></LatestTickets>
+      <LatestTickets latestTickets={fewTickets}></LatestTickets>
       <PopularRoad></PopularRoad>
       <ChooseUs></ChooseUs>
     </div>

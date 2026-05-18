@@ -58,6 +58,13 @@ const Navbar = () => {
                 <NavLink to="/about">About</NavLink>
               </li>
               <li>
+                <NavLink to="/all-tickets">All Tickets</NavLink>
+              </li>
+
+              <li>
+                <NavLink to="/dashboard">Dashboard</NavLink>
+              </li>
+              <li>
                 <NavLink to="/contact">Contact</NavLink>
               </li>
               {user ? (
@@ -112,10 +119,13 @@ const Navbar = () => {
               <NavLink to="/about">About</NavLink>
             </li>
             <li>
-              <NavLink to="/contact">Contact</NavLink>
+              <NavLink to="/all-tickets">All Tickets</NavLink>
             </li>
             <li>
               <NavLink to="/dashboard">Dashboard</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact">Contact</NavLink>
             </li>
           </ul>
         </div>

@@ -23,6 +23,7 @@ const FeaturedTickets = ({ advertiseTickets }) => {
             ticketTitle={ticket.ticketTitle}
             ticketTo={ticket.ticketTo}
             transportType={ticket.transportType}
+            alertMsg="Featured"
           ></Card>
         ))}
       </div>

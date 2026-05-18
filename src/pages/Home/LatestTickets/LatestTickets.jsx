@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import SectionHeading from "../../../components/SectionHeading";
 import Card from "../../../components/SharedComponent/Card";
 
@@ -22,8 +23,12 @@ const LatestTickets = ({ latestTickets }) => {
             ticketTitle={ticket.ticketTitle}
             ticketTo={ticket.ticketTo}
             transportType={ticket.transportType}
+            alertMsg="New"
           ></Card>
         ))}
+      </div>
+      <div className="flex justify-center mt-15">
+        <Link className="btn btn-lg btn-grad">All Tickets</Link>
       </div>
     </div>
   );

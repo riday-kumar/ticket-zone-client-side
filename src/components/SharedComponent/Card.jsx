@@ -10,14 +10,19 @@ const Card = ({
   departureTime,
   perks,
   photoURL,
-  status,
+  alertMsg,
 }) => {
+  const localDate = new Date(departureTime);
+  const showLocalDate = localDate.toLocaleString();
+
   return (
     <div className="card bg-white shadow-lg element">
       <figure className="relative">
         <img className="w-full h-60" src={photoURL} alt="Shoes" />
-        <div className="absolute top-2 right-2 badge badge-error text-white font-semibold">
-          Featured
+        <div
+          className={`absolute top-2 right-2 badge text-white font-semibold ${alertMsg === "Featured" && "badge-warning"} ${alertMsg === "New" && "badge-success animate-pulse"}`}
+        >
+          {alertMsg}
         </div>
         {/* price */}
         <div className="font-bold absolute bottom-2 left-2 badge badge-primary text-white">
@@ -33,7 +38,7 @@ const Card = ({
         <p className="mb-3 flex items-center gap-3 text-info text-[20px] font-semibold">
           {ticketFrom} <FaArrowRight /> {ticketTo}
         </p>
-        <div className="card-actions space-y-3">
+        <div className="card-actions flex-col space-y-3">
           {/* ticket for and how many sits */}
           <div className="flex gap-3 *:text-white">
             <div className="badge badge-primary font-semibold text-[18px]">
@@ -43,14 +48,22 @@ const Card = ({
               {ticketQuantity} seats left
             </div>
           </div>
+
           {/* features like - ac, breakfast */}
           <div className="flex gap-2">
-            <div className="badge badge-outline text-primary">AC</div>
-            <div className="badge badge-outline text-primary">Breakfast</div>
-            <div className="badge badge-outline text-primary">+2 more</div>
+            {perks.slice(0, 2).map((perk, index) => (
+              <div key={index} className="badge badge-outline text-primary">
+                {perk}
+              </div>
+            ))}
+            {perks.length > 2 && (
+              <div className="badge badge-outline text-primary">
+                + {perks.length - 2} more
+              </div>
+            )}
           </div>
           {/* departure time */}
-          <p className="font-bold">Departure : {departureTime}</p>
+          <p className="font-bold">Departure : {showLocalDate}</p>
           <button className="btn btn-grad btn-large w-full">Book Now</button>
         </div>
       </div>
