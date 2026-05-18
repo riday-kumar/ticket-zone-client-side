@@ -21,6 +21,7 @@ import MyTickets from "../pages/Dashboard/MyTickets/MyTickets";
 import VendorRoute from "./VendorRoute";
 import AdminRoute from "./AdminRoute";
 import Forbidden from "../components/Forbidden";
+import TicketDetails from "../pages/TicketDetails/TicketDetails";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "all-tickets",
         Component: AllTickets,
+      },
+      {
+        path: "tickets/:id",
+        Component: TicketDetails,
       },
       {
         path: "login",

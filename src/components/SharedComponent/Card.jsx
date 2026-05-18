@@ -1,4 +1,5 @@
 import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router";
 
 const Card = ({
   ticketTitle,
@@ -11,6 +12,7 @@ const Card = ({
   perks,
   photoURL,
   alertMsg,
+  id,
 }) => {
   const localDate = new Date(departureTime);
   const showLocalDate = localDate.toLocaleString();
@@ -64,7 +66,9 @@ const Card = ({
           </div>
           {/* departure time */}
           <p className="font-bold">Departure : {showLocalDate}</p>
-          <button className="btn btn-grad btn-large w-full">Book Now</button>
+          <Link to={`/tickets/${id}`} className="btn btn-grad btn-large w-full">
+            Book Now
+          </Link>
         </div>
       </div>
     </div>

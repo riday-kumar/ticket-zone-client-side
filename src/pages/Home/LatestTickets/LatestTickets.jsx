@@ -24,6 +24,7 @@ const LatestTickets = ({ latestTickets }) => {
             ticketTo={ticket.ticketTo}
             transportType={ticket.transportType}
             alertMsg="New"
+            id={ticket._id}
           ></Card>
         ))}
       </div>
