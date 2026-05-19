@@ -1,15 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaBus, FaLocationDot, FaClock } from "react-icons/fa6";
 import { MdAirlineSeatReclineExtra } from "react-icons/md";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router";
 
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../../components/SharedComponent/Loading";
+import useAuth from "../../hooks/useAuth";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const TicketDetails = () => {
+  const [ticketCount, setTicketCount] = useState(1);
+
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
+  const bookingModal = useRef(null);
+
+  const navigate = useNavigate();
 
   // Fetch Ticket Details
 
@@ -20,6 +29,10 @@ const TicketDetails = () => {
       return res.data;
     },
   });
+
+  // ticket price
+  // const [totalPrice, setTotalPrice] = useState(ticketDetails.ticketPrice);
+  const totalPrice = ticketCount * ticketDetails.ticketPrice;
 
   // Countdown State
 
@@ -71,9 +84,8 @@ const TicketDetails = () => {
     };
   };
 
-  // =========================
   // Live Countdown
-  // =========================
+
   useEffect(() => {
     // if departureTime not exists
     if (!ticketDetails?.departureTime) return;
@@ -81,7 +93,7 @@ const TicketDetails = () => {
     // Initial Time Set
     setTimeLeft(calculateTimeLeft());
 
-    // প্রতি 1 sec update
+    // per 1 sec update
     const interval = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -89,6 +101,40 @@ const TicketDetails = () => {
     // Cleanup
     return () => clearInterval(interval);
   }, [ticketDetails]);
+
+  const { register, handleSubmit, setValue } = useForm();
+
+  useEffect(() => {
+    setValue("bkuserTicketQuantity", ticketCount);
+  }, [ticketCount, setValue]);
+
+  useEffect(() => {
+    setValue("bkTotalPrice", totalPrice);
+  }, [totalPrice, setValue]);
+
+  const handleShowBookingModal = () => {
+    bookingModal.current.showModal();
+  };
+
+  const handleTicketBooking = (data) => {
+    const bookingData = { ...data };
+    bookingData.bkuserName = user?.displayName;
+    bookingData.bkuserEmail = user?.email;
+    console.log(bookingData);
+
+    axiosSecure.post("/bookings", bookingData).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Ticket Booking Successful. Vendor will review your ticket",
+          showConfirmButton: false,
+          timer: 2000,
+        });
+        navigate("/dashboard/my-bookings");
+      }
+    });
+  };
 
   // Loading State
 
@@ -286,7 +332,10 @@ const TicketDetails = () => {
 
               {/* Button */}
               <button
-                disabled={timeLeft.expired}
+                onClick={handleShowBookingModal}
+                disabled={
+                  timeLeft.expired || ticketDetails.ticketQuantity === 0
+                }
                 className="btn btn-primary btn-lg w-full mt-6 rounded-xl"
               >
                 <FaBus />
@@ -296,6 +345,162 @@ const TicketDetails = () => {
           </div>
         </div>
       </div>
+
+      {/* modal for ticket booking */}
+      <dialog ref={bookingModal} className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Book Now</h3>
+          <div className="modal-action">
+            <form method="dialog">
+              <button className="btn btn-sm btn-circle btn-ghost">✕</button>
+            </form>
+          </div>
+          {/* =============== form for ticket booking ========= */}
+          <form
+            onSubmit={handleSubmit(handleTicketBooking)}
+            className="space-y-5"
+          >
+            {/* User Info */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Name */}
+              <div>
+                <label className="label">
+                  <span className="label-text">User Name</span>
+                </label>
+
+                <input
+                  type="text"
+                  defaultValue={user?.displayName}
+                  readOnly
+                  className="input input-bordered w-full"
+                />
+              </div>
+
+              {/* Email */}
+              <div>
+                <label className="label">
+                  <span className="label-text">User Email</span>
+                </label>
+
+                <input
+                  type="email"
+                  defaultValue={user?.email}
+                  readOnly
+                  className="input input-bordered w-full"
+                />
+              </div>
+            </div>
+
+            {/* Ticket Info */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* Ticket Name */}
+              <div>
+                <label className="label">
+                  <span className="label-text">Ticket Name</span>
+                </label>
+                <input
+                  type="hidden"
+                  value={ticketDetails._id}
+                  {...register("bkTicketId")}
+                />
+
+                <input
+                  type="text"
+                  defaultValue={ticketDetails.ticketTitle}
+                  readOnly
+                  className="input input-bordered w-full"
+                  {...register("bkTicketName")}
+                />
+              </div>
+
+              {/* Ticket Count */}
+              <div>
+                <label className="label">
+                  <span className="label-text">Number of Tickets</span>
+                </label>
+
+                <input
+                  type="number"
+                  min="1"
+                  max={ticketDetails.ticketQuantity}
+                  value={ticketCount}
+                  onChange={(e) => setTicketCount(Number(e.target.value))}
+                  className="input input-bordered w-full"
+                />
+
+                <input type="hidden" {...register("bkuserTicketQuantity")} />
+              </div>
+            </div>
+
+            {/* Route */}
+            <div className="grid md:grid-cols-2 gap-4">
+              {/* From */}
+              <div>
+                <label className="label">
+                  <span className="label-text">From</span>
+                </label>
+
+                <input
+                  type="text"
+                  defaultValue={ticketDetails.ticketFrom}
+                  readOnly
+                  className="input input-bordered w-full"
+                  {...register("bkuserTicketFrom")}
+                />
+              </div>
+
+              {/* To */}
+              <div>
+                <label className="label">
+                  <span className="label-text">To</span>
+                </label>
+
+                <input
+                  type="text"
+                  value={ticketDetails.ticketTo}
+                  readOnly
+                  className="input input-bordered w-full"
+                  {...register("bkuserTicketTo")}
+                />
+              </div>
+            </div>
+
+            {/* Price Summary */}
+            <div className="bg-base-200 rounded-2xl p-5 space-y-3">
+              <div className="flex justify-between">
+                <span>Price Per Ticket</span>
+
+                <span className="font-bold">৳{ticketDetails.ticketPrice}</span>
+              </div>
+
+              <div className="flex justify-between">
+                <span>Quantity</span>
+
+                <span className="font-bold">{ticketCount}</span>
+              </div>
+
+              <div className="divider my-1"></div>
+
+              <div className="flex justify-between text-lg">
+                <span className="font-bold">Total Price</span>
+
+                <span className="font-extrabold text-primary">
+                  ৳{ticketCount * ticketDetails.ticketPrice}
+                </span>
+
+                <input type="hidden" {...register("bkTotalPrice")} />
+              </div>
+            </div>
+
+            {/* Buttons */}
+            <div className="flex gap-3 pt-2">
+              <button type="submit" className="btn btn-primary flex-1">
+                Confirm Booking
+              </button>
+            </div>
+          </form>
+        </div>
+      </dialog>
     </div>
   );
 };
