@@ -118,9 +118,7 @@ const TicketDetails = () => {
 
   const handleTicketBooking = (data) => {
     const bookingData = { ...data };
-    bookingData.bkuserName = user?.displayName;
     bookingData.bkuserEmail = user?.email;
-    console.log(bookingData);
 
     axiosSecure.post("/bookings", bookingData).then((res) => {
       if (res.data.insertedId) {
@@ -387,6 +385,7 @@ const TicketDetails = () => {
                   defaultValue={user?.email}
                   readOnly
                   className="input input-bordered w-full"
+                  {...register("bkUserEmail")}
                 />
               </div>
             </div>
@@ -409,7 +408,6 @@ const TicketDetails = () => {
                   defaultValue={ticketDetails.ticketTitle}
                   readOnly
                   className="input input-bordered w-full"
-                  {...register("bkTicketName")}
                 />
               </div>
 
@@ -445,7 +443,6 @@ const TicketDetails = () => {
                   defaultValue={ticketDetails.ticketFrom}
                   readOnly
                   className="input input-bordered w-full"
-                  {...register("bkuserTicketFrom")}
                 />
               </div>
 
@@ -460,7 +457,6 @@ const TicketDetails = () => {
                   value={ticketDetails.ticketTo}
                   readOnly
                   className="input input-bordered w-full"
-                  {...register("bkuserTicketTo")}
                 />
               </div>
             </div>
