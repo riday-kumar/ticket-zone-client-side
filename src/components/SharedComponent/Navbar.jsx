@@ -3,6 +3,7 @@ import Logo from "./Logo";
 import useAuth from "../../hooks/useAuth";
 import Loading from "./Loading";
 import { toast } from "react-toastify";
+import { FaCircleUser } from "react-icons/fa6";
 
 const Navbar = () => {
   const { user, loading, logOut } = useAuth();
@@ -139,11 +140,19 @@ const Navbar = () => {
                   className="btn btn-ghost btn-circle avatar"
                 >
                   <div className="w-10 rounded-full">
-                    <img
-                      className="animate-pulse rounded-full border-2 border-primary w-10"
-                      src={user?.photoURL}
-                      alt=""
-                    />
+                    {user.photoURL ? (
+                      <img
+                        className="rounded-full border-2 border-primary w-10"
+                        src={user?.photoURL}
+                        alt=""
+                      />
+                    ) : (
+                      <img
+                        className="rounded-full border-2 border-primary w-10"
+                        src="https://img.icons8.com/?size=100&id=kDoeg22e5jUY&format=png&color=000000"
+                        alt=""
+                      />
+                    )}
                   </div>
                 </div>
                 <ul

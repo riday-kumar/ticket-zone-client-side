@@ -6,9 +6,13 @@ import { TbFileSettingsFilled } from "react-icons/tb";
 import { HiHandRaised } from "react-icons/hi2";
 import { NavLink, Outlet } from "react-router";
 import useCheckUserRole from "../../hooks/useCheckUserRole";
+import Loading from "../../components/SharedComponent/Loading";
 
 const DashboardLayout = () => {
-  const { role } = useCheckUserRole();
+  const { role, roleLoading } = useCheckUserRole();
+  if (roleLoading) {
+    return <Loading></Loading>;
+  }
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -106,7 +110,7 @@ const DashboardLayout = () => {
             </li>
             {/* ------------------- Vendor -------------------- */}
 
-            {role === "vendor" && (
+            {role.role === "vendor" && (
               <>
                 {/* Add Ticket */}
                 <li>
@@ -150,7 +154,7 @@ const DashboardLayout = () => {
             )}
 
             {/* ------------------- admin------------------- */}
-            {role === "admin" && (
+            {role.role === "admin" && (
               <>
                 {/* Manage Ticket */}
                 <li>

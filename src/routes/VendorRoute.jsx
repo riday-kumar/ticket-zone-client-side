@@ -11,7 +11,7 @@ const VendorRoute = ({ children }) => {
     return <Loading></Loading>;
   }
 
-  if (role !== "vendor") {
+  if (role.role !== "vendor") {
     return <Forbidden></Forbidden>;
   }
 

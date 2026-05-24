@@ -6,8 +6,10 @@ import Loading from "../../../components/SharedComponent/Loading";
 import Countdown from "react-countdown";
 import { GiTicket } from "react-icons/gi";
 import { TbCoinTakaFilled } from "react-icons/tb";
+import { useState } from "react";
 
 const MyBookings = () => {
+  const [validPaid, setValidPaid] = useState(false);
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
@@ -22,13 +24,15 @@ const MyBookings = () => {
   if (dataLoading) {
     return <Loading></Loading>;
   }
-  console.log(myBookings);
+
+  const handlePay = (id) => {
+    console.log(id);
+  };
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
-      return (
-        <span className="text-red-500 font-bold">Bus Already Departed</span>
-      );
+      setValidPaid(true);
+      return <span className="text-red-500 font-bold">Already Departed</span>;
     }
     return (
       <div className="grid grid-cols-4 gap-2 text-center">
@@ -62,6 +66,7 @@ const MyBookings = () => {
       </div>
     );
   };
+
   return (
     <div>
       <SectionHeading heading="My Bookings"></SectionHeading>
@@ -70,11 +75,12 @@ const MyBookings = () => {
           <div key={index} className="bg-[#c7eee6] p-4 card w-96 shadow-sm">
             <figure className="rounded-4xl">
               <img
+                className="h-50 w-full"
                 src={booking.ticketBooingCombineData[0].photoURL}
                 alt="Shoes"
               />
             </figure>
-            <div className="card-body text-primary">
+            <div className="card-body text-primary space-y-3">
               <h2 className="card-title text-2xl font-bold">
                 {booking.ticketBooingCombineData[0].ticketTitle}
               </h2>
@@ -88,7 +94,7 @@ const MyBookings = () => {
                   Quantity : {booking.ticketQuantity}
                 </h3>
                 <h3 className="text-black flex justify-center items-center">
-                  Total <TbCoinTakaFilled />: {booking.totalPrice}
+                  Total : <TbCoinTakaFilled /> {booking.totalPrice}
                 </h3>
               </div>
 
@@ -103,7 +109,23 @@ const MyBookings = () => {
               ></Countdown>
 
               <div className="card-actions justify-end">
-                <button className="btn btn-warning text-white">Pending</button>
+                {booking.status === "accept" ? (
+                  <button
+                    onClick={() => handlePay(booking._id)}
+                    disabled={validPaid}
+                    className="btn btn-primary text-white"
+                  >
+                    Pay Now
+                  </button>
+                ) : booking.status === "reject" ? (
+                  <div className="badge badge-error text-white font-bold">
+                    Rejected
+                  </div>
+                ) : (
+                  <button className="btn btn-warning text-white">
+                    Pending
+                  </button>
+                )}
               </div>
             </div>
           </div>

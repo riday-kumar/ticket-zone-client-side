@@ -7,12 +7,13 @@ import Forbidden from "../components/Forbidden";
 const AdminRoute = ({ children }) => {
   const { loading, logOut } = useAuth();
   const { roleLoading, role } = useCheckUserRole();
+  // console.log(role);
 
   if (loading || roleLoading) {
     return <Loading></Loading>;
   }
 
-  if (role !== "admin") {
+  if (role.role !== "admin") {
     logOut()
       .then(() => {
         toast.error("You are Forbidden to Access this Page", {

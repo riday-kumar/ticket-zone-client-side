@@ -18,6 +18,7 @@ const TicketDetails = () => {
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  // console.log(user);
   const bookingModal = useRef(null);
 
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const TicketDetails = () => {
       setTimeLeft(true);
       return (
         <span className="text-red-500 font-bold text-center">
-          Bus Already Departed
+          Already Departed
         </span>
       );
     }

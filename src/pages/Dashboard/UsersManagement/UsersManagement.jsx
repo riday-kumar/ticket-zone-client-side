@@ -89,7 +89,7 @@ const UsersManagement = () => {
           </thead>
           <tbody>
             {allUsers.map((user, index) => (
-              <tr>
+              <tr key={index}>
                 <th>{index + 1}</th>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
