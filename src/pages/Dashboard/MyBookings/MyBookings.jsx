@@ -21,12 +21,32 @@ const MyBookings = () => {
     },
   });
 
+  console.log(myBookings);
+
   if (dataLoading) {
     return <Loading></Loading>;
   }
 
-  const handlePay = (id) => {
-    console.log(id);
+  const handlePayment = async (
+    bookingId,
+    cost,
+    ticketName,
+    bookingEmail,
+    ticketId,
+    bookingQuantity,
+  ) => {
+    const paymentInfo = {
+      bookingId,
+      cost,
+      ticketName,
+      bookingEmail,
+      ticketId,
+      bookingQuantity,
+    };
+    // console.log(paymentInfo);
+    const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
+    // console.log(res.data);
+    window.location.assign(res.data.url);
   };
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
@@ -108,25 +128,40 @@ const MyBookings = () => {
                 date={booking.ticketBooingCombineData[0].departureTime}
               ></Countdown>
 
-              <div className="card-actions justify-end">
-                {booking.status === "accept" ? (
-                  <button
-                    onClick={() => handlePay(booking._id)}
-                    disabled={validPaid}
-                    className="btn btn-primary text-white"
-                  >
-                    Pay Now
-                  </button>
-                ) : booking.status === "reject" ? (
-                  <div className="badge badge-error text-white font-bold">
-                    Rejected
-                  </div>
-                ) : (
-                  <button className="btn btn-warning text-white">
-                    Pending
-                  </button>
-                )}
-              </div>
+              {booking.payment === "paid" ? (
+                <div className="badge badge-success text-white font-bold">
+                  Paid
+                </div>
+              ) : (
+                <div className="card-actions justify-end">
+                  {booking.status === "accept" ? (
+                    <button
+                      onClick={() =>
+                        handlePayment(
+                          booking._id,
+                          booking.totalPrice,
+                          booking.ticketBooingCombineData[0].ticketTitle,
+                          booking.userEmail,
+                          booking.ticketBooingCombineData[0]._id,
+                          booking.ticketQuantity,
+                        )
+                      }
+                      disabled={validPaid}
+                      className="btn btn-primary text-white"
+                    >
+                      Pay Now
+                    </button>
+                  ) : booking.status === "reject" ? (
+                    <div className="badge badge-error text-white font-bold">
+                      Rejected
+                    </div>
+                  ) : (
+                    <button className="btn btn-warning text-white">
+                      Pending
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
           </div>
         ))}

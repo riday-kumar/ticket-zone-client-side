@@ -22,6 +22,8 @@ import VendorRoute from "./VendorRoute";
 import AdminRoute from "./AdminRoute";
 import Forbidden from "../components/Forbidden";
 import TicketDetails from "../pages/TicketDetails/TicketDetails";
+import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
+import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
 
 export const router = createBrowserRouter([
   {
@@ -85,6 +87,14 @@ export const router = createBrowserRouter([
       {
         path: "payments",
         Component: PaymentHistory,
+      },
+      {
+        path: "payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "payment-cancel",
+        Component: PaymentCancel,
       },
       // vendor
       {
