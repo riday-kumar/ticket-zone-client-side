@@ -9,9 +9,11 @@ import Loading from "../../components/SharedComponent/Loading";
 import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import Countdown from "react-countdown";
 
 const TicketDetails = () => {
   const [ticketCount, setTicketCount] = useState(1);
+  const [timeLeft, setTimeLeft] = useState(false);
 
   const { id } = useParams();
   const axiosSecure = useAxiosSecure();
@@ -21,7 +23,6 @@ const TicketDetails = () => {
   const navigate = useNavigate();
 
   // Fetch Ticket Details
-
   const { isLoading, data: ticketDetails = {} } = useQuery({
     queryKey: ["ticketDetails", id],
     queryFn: async () => {
@@ -31,77 +32,52 @@ const TicketDetails = () => {
   });
 
   // ticket price
-  // const [totalPrice, setTotalPrice] = useState(ticketDetails.ticketPrice);
   const totalPrice = ticketCount * ticketDetails.ticketPrice;
 
   // Countdown State
-
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    expired: false,
-  });
-
-  // Countdown Function
-
-  const calculateTimeLeft = () => {
-    // If departureTime not exists
-    if (!ticketDetails?.departureTime) return;
-
-    // Departure Time
-    const departureTime = new Date(ticketDetails.departureTime).getTime();
-
-    // Current Time
-    const now = new Date().getTime();
-
-    // Difference
-    const distance = departureTime - now;
-
-    // Expired
-    if (distance <= 0) {
-      return {
-        expired: true,
-        days: 0,
-        hours: 0,
-        minutes: 0,
-        seconds: 0,
-      };
+  const renderer = ({ days, hours, minutes, seconds, completed }) => {
+    if (completed) {
+      setTimeLeft(true);
+      return (
+        <span className="text-red-500 font-bold text-center">
+          Bus Already Departed
+        </span>
+      );
     }
+    return (
+      <div className="grid grid-cols-4 gap-2 text-center">
+        {/* Days */}
+        <div className="bg-base-100 rounded-xl p-3 shadow">
+          <h2 className="text-2xl font-bold">{days}</h2>
 
-    // Time Calculation
-    return {
-      expired: false,
+          <p className="text-xs">Days</p>
+        </div>
 
-      days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+        {/* Hours */}
+        <div className="bg-base-100 rounded-xl p-3 shadow">
+          <h2 className="text-2xl font-bold">{hours}</h2>
 
-      hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          <p className="text-xs">Hours</p>
+        </div>
 
-      minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        {/* Minutes */}
+        <div className="bg-base-100 rounded-xl p-3 shadow">
+          <h2 className="text-2xl font-bold">{minutes}</h2>
 
-      seconds: Math.floor((distance % (1000 * 60)) / 1000),
-    };
+          <p className="text-xs">Minutes</p>
+        </div>
+
+        {/* Seconds */}
+        <div className="bg-base-100 rounded-xl p-3 shadow">
+          <h2 className="text-2xl font-bold">{seconds}</h2>
+
+          <p className="text-xs">Seconds</p>
+        </div>
+      </div>
+    );
   };
 
-  // Live Countdown
-
-  useEffect(() => {
-    // if departureTime not exists
-    if (!ticketDetails?.departureTime) return;
-
-    // Initial Time Set
-    setTimeLeft(calculateTimeLeft());
-
-    // per 1 sec update
-    const interval = setInterval(() => {
-      setTimeLeft(calculateTimeLeft());
-    }, 1000);
-
-    // Cleanup
-    return () => clearInterval(interval);
-  }, [ticketDetails]);
-
+  // react hook form related
   const { register, handleSubmit, setValue } = useForm();
 
   useEffect(() => {
@@ -112,10 +88,12 @@ const TicketDetails = () => {
     setValue("bkTotalPrice", totalPrice);
   }, [totalPrice, setValue]);
 
+  // ticket booking modal ---> show
   const handleShowBookingModal = () => {
     bookingModal.current.showModal();
   };
 
+  // ticket booking handler
   const handleTicketBooking = (data) => {
     const bookingData = { ...data };
     bookingData.bkuserEmail = user?.email;
@@ -135,7 +113,6 @@ const TicketDetails = () => {
   };
 
   // Loading State
-
   if (isLoading) {
     return <Loading />;
   }
@@ -267,47 +244,11 @@ const TicketDetails = () => {
               </div>
 
               {/* Countdown */}
-              <div className="bg-error/10 border border-error/20 rounded-2xl p-5">
-                <h3 className="font-bold text-lg mb-4 text-center">
-                  Departure Countdown
-                </h3>
-
-                {timeLeft.expired ? (
-                  <p className="text-center text-error font-bold">
-                    Bus Already Departed
-                  </p>
-                ) : (
-                  <div className="grid grid-cols-4 gap-2 text-center">
-                    {/* Days */}
-                    <div className="bg-base-100 rounded-xl p-3 shadow">
-                      <h2 className="text-2xl font-bold">{timeLeft.days}</h2>
-
-                      <p className="text-xs">Days</p>
-                    </div>
-
-                    {/* Hours */}
-                    <div className="bg-base-100 rounded-xl p-3 shadow">
-                      <h2 className="text-2xl font-bold">{timeLeft.hours}</h2>
-
-                      <p className="text-xs">Hours</p>
-                    </div>
-
-                    {/* Minutes */}
-                    <div className="bg-base-100 rounded-xl p-3 shadow">
-                      <h2 className="text-2xl font-bold">{timeLeft.minutes}</h2>
-
-                      <p className="text-xs">Minutes</p>
-                    </div>
-
-                    {/* Seconds */}
-                    <div className="bg-base-100 rounded-xl p-3 shadow">
-                      <h2 className="text-2xl font-bold">{timeLeft.seconds}</h2>
-
-                      <p className="text-xs">Seconds</p>
-                    </div>
-                  </div>
-                )}
-              </div>
+              <Countdown
+                className="text-[16px] font-bold text-green-500 mt-3"
+                renderer={renderer}
+                date={ticketDetails.departureTime}
+              ></Countdown>
 
               {/* Extra Info */}
               <div className="space-y-3 mt-5">
@@ -331,9 +272,7 @@ const TicketDetails = () => {
               {/* Button */}
               <button
                 onClick={handleShowBookingModal}
-                disabled={
-                  timeLeft.expired || ticketDetails.ticketQuantity === 0
-                }
+                disabled={timeLeft || ticketDetails.ticketQuantity === 0}
                 className="btn btn-primary btn-lg w-full mt-6 rounded-xl"
               >
                 <FaBus />
@@ -344,7 +283,7 @@ const TicketDetails = () => {
         </div>
       </div>
 
-      {/* modal for ticket booking */}
+      {/* ================ modal for ticket booking =================*/}
       <dialog ref={bookingModal} className="modal modal-bottom sm:modal-middle">
         <div className="modal-box">
           <h3 className="font-bold text-lg">Book Now</h3>

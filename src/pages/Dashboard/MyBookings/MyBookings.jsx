@@ -3,8 +3,6 @@ import SectionHeading from "../../../components/SectionHeading";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../../components/SharedComponent/Loading";
-import Card from "../../../components/SharedComponent/Card";
-import { useEffect } from "react";
 import Countdown from "react-countdown";
 import { GiTicket } from "react-icons/gi";
 import { TbCoinTakaFilled } from "react-icons/tb";
@@ -13,11 +11,7 @@ const MyBookings = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
 
-  const {
-    isLoading: dataLoading,
-    data: myBookings = [],
-    refetch,
-  } = useQuery({
+  const { isLoading: dataLoading, data: myBookings = [] } = useQuery({
     queryKey: ["myBookings", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/bookings?email=${user.email}`);
