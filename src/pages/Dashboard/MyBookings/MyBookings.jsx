@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import SectionHeading from "../../../components/SectionHeading";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Loading from "../../../components/SharedComponent/Loading";

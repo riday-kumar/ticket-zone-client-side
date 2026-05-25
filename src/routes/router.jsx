@@ -24,6 +24,7 @@ import Forbidden from "../components/Forbidden";
 import TicketDetails from "../pages/TicketDetails/TicketDetails";
 import PaymentSuccess from "../pages/Dashboard/Payment/PaymentSuccess";
 import PaymentCancel from "../pages/Dashboard/Payment/PaymentCancel";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
@@ -147,5 +148,9 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "*",
+    Component: NotFound,
   },
 ]);

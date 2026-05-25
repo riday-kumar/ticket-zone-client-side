@@ -3,7 +3,6 @@ import Loading from "../../../components/SharedComponent/Loading";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCheckUserRole from "../../../hooks/useCheckUserRole";
 import DashboardHeading from "../../../components/DashboardHeading";
-import SectionHeading from "../../../components/SectionHeading";
 
 const PaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
