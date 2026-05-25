@@ -19,7 +19,7 @@ const AdminDashboardHome = () => {
   const { data: adminGetTransactionHistory = [] } = useQuery({
     queryKey: ["adminGetTransactionHistory"],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/my-transaction`);
+      const res = await axiosSecure.get(`/admin/transactions`);
       return res.data;
     },
   });

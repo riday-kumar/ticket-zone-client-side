@@ -19,7 +19,7 @@ const DashboardLayout = () => {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className="h-20 navbar w-full bg-linear-to-l from-emerald-400 to-cyan-400">
+        <nav className="h-20 navbar w-full bg-sky-400">
           <div className="px-4 font-bold text-white">
             <Logo></Logo>
           </div>

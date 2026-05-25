@@ -29,7 +29,7 @@ const VendorDashboardHome = () => {
     useQuery({
       queryKey: ["sellRequestBooing", role.email],
       queryFn: async () => {
-        const res = await axiosSecure.get(`/req-bookings?email=${role.email}`);
+        const res = await axiosSecure.get(`/req-bookings/single-vendor`);
         return res.data;
       },
     });
