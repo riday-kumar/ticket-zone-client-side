@@ -10,7 +10,7 @@
 }
 
 a.active {
-  @apply bg-primary text-accent;
+  @apply bg-linear-to-r from-cyan-500 to-blue-500 text-white font-bold;
 }
 
 .custom-bg {
