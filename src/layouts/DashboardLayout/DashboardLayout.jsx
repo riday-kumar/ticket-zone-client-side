@@ -19,8 +19,8 @@ const DashboardLayout = () => {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className="navbar w-full bg-base-300">
-          <div className="px-4 font-bold">
+        <nav className="h-20 navbar w-full bg-linear-to-l from-emerald-400 to-cyan-400">
+          <div className="px-4 font-bold text-white">
             <Logo></Logo>
           </div>
         </nav>
@@ -33,7 +33,7 @@ const DashboardLayout = () => {
       <div className="min-h-dvh">
         <div className="flex min-h-full flex-col items-start bg-primary text-white">
           {/* Sidebar content here */}
-          <div className="mb-5 text-center bg-linear-to-r from-emerald-400 to-cyan-400 w-full h-20 flex flex-col justify-center items-center">
+          <div className="mb-5 text-center bg-linear-to-l from-pink-500 to-rose-500 w-full h-20 flex flex-col justify-center items-center">
             <h3 className="text-xl font-bold uppercase">My Dashboard</h3>
             <p className="font-medium">Latest Overview.</p>
           </div>

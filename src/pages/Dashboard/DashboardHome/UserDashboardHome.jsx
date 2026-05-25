@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useCheckUserRole from "../../../hooks/useCheckUserRole";
 import Loading from "../../../components/SharedComponent/Loading";
+import OverViewHeading from "./OverViewHeading";
 
 const UserDashboardHome = () => {
   const { role, roleLoading } = useCheckUserRole();
@@ -32,6 +33,7 @@ const UserDashboardHome = () => {
 
   return (
     <div className="space-y-10">
+      <OverViewHeading name="User"></OverViewHeading>
       <div className="grid md:grid-cols-4 gap-5 lg:gap-10">
         <div className="font-bold px-10 py-7 rounded-xl text-white bg-linear-to-r from-emerald-500 to-emerald-900">
           <p className="text-2xl pb-2">Total Bookings</p>
