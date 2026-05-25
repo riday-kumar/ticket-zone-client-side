@@ -53,8 +53,6 @@ const VendorDashboardHome = () => {
     0,
   );
 
-  // const getSoldTicketRevenue = sellRequestBooing.filter((ticket)=>ticket.payment === "paid")
-
   if (roleLoading || totalTicketAddedLoading || sellRequestLoading) {
     return <Loading></Loading>;
   }
