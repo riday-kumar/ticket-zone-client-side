@@ -7,6 +7,7 @@ import Countdown from "react-countdown";
 import { GiTicket } from "react-icons/gi";
 import { TbCoinTakaFilled } from "react-icons/tb";
 import { useState } from "react";
+import DashboardHeading from "../../../components/DashboardHeading";
 
 const MyBookings = () => {
   const [validPaid, setValidPaid] = useState(false);
@@ -87,9 +88,23 @@ const MyBookings = () => {
     );
   };
 
+  if (myBookings.length === 0) {
+    return (
+      <div>
+        <DashboardHeading heading="My Bookings"></DashboardHeading>
+        <div className="text-center">
+          <span>
+            No bookings found.Once you book tickets, your bookings history will
+            appear here.
+          </span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div>
-      <SectionHeading heading="My Bookings"></SectionHeading>
+      <DashboardHeading heading="My Bookings"></DashboardHeading>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {myBookings.map((booking, index) => (
           <div key={index} className="bg-[#c7eee6] p-4 card w-96 shadow-sm">
