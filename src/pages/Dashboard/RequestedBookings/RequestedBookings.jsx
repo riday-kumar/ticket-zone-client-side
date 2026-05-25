@@ -3,11 +3,18 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import DashboardHeading from "../../../components/DashboardHeading";
 import { FaBangladeshiTakaSign } from "react-icons/fa6";
 import { toast } from "react-toastify";
+import useCheckUserRole from "../../../hooks/useCheckUserRole";
+import Loading from "../../../components/SharedComponent/Loading";
 
 const RequestedBookings = () => {
   const axiosSecure = useAxiosSecure();
+  const { role, roleLoading } = useCheckUserRole();
 
-  const { data: requestedBookingTickets = [], refetch } = useQuery({
+  const {
+    isLoading: reqBkLoading,
+    data: requestedBookingTickets = [],
+    refetch,
+  } = useQuery({
     queryKey: ["requestedBookingTickets"],
     queryFn: async () => {
       const res = await axiosSecure.get("/req-bookings");
@@ -15,42 +22,50 @@ const RequestedBookings = () => {
     },
   });
 
-  const handleAcceptTicket = (id) => {
-    axiosSecure.patch(`/req-bookings/${id}?msg=accept`).then((res) => {
-      if (res.data.modifiedCount === 1) {
-        refetch();
+  if (reqBkLoading || roleLoading) {
+    return <Loading></Loading>;
+  }
 
-        toast.success("Ticket has be accepted", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      }
-    });
+  const handleAcceptTicket = (id) => {
+    axiosSecure
+      .patch(`/req-bookings/${id}?msg=accept&vendoremail=${role.email}`)
+      .then((res) => {
+        if (res.data.modifiedCount === 1) {
+          refetch();
+
+          toast.success("Ticket has been accepted", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
   };
 
   const handleRejectTicket = (id) => {
-    axiosSecure.patch(`/req-bookings/${id}?msg=reject`).then((res) => {
-      if (res.data.modifiedCount === 1) {
-        refetch();
+    axiosSecure
+      .patch(`/req-bookings/${id}?msg=reject&vendoremail=${role.email}`)
+      .then((res) => {
+        if (res.data.modifiedCount === 1) {
+          refetch();
 
-        toast.success("Ticket Rejected", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: false,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "colored",
-        });
-      }
-    });
+          toast.success("Ticket Rejected", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+          });
+        }
+      });
   };
 
   return (

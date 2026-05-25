@@ -16,15 +16,46 @@ const VendorDashboardHome = () => {
   const axiosSecure = useAxiosSecure();
   const { role, roleLoading } = useCheckUserRole();
 
-  const { isLoading, data: totalTicketAdded = [] } = useQuery({
-    queryKey: ["totalTicketAdded", role.email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/tickets?email=${role.email}`);
-      return res.data;
-    },
-  });
+  const { isLoading: totalTicketAddedLoading, data: totalTicketAdded = [] } =
+    useQuery({
+      queryKey: ["totalTicketAdded", role.email],
+      queryFn: async () => {
+        const res = await axiosSecure.get(`/tickets?email=${role.email}`);
+        return res.data;
+      },
+    });
 
-  if (roleLoading || isLoading) {
+  const { isLoading: sellRequestLoading, data: sellRequestBooing = [] } =
+    useQuery({
+      queryKey: ["sellRequestBooing", role.email],
+      queryFn: async () => {
+        const res = await axiosSecure.get(`/req-bookings?email=${role.email}`);
+        return res.data;
+      },
+    });
+
+  // console.log("sellRequestBooing", sellRequestBooing);
+  const getSoldTicketNum = sellRequestBooing.filter(
+    (ticket) => ticket.payment === "paid",
+  );
+
+  const getTotalSoldTicket = getSoldTicketNum.reduce(
+    (accumulator, currentValue) => {
+      return accumulator + currentValue.ticketQuantity;
+    },
+    0,
+  );
+
+  const getTotalRevenue = getSoldTicketNum.reduce(
+    (accumulator, currentValue) => {
+      return accumulator + currentValue.totalPrice;
+    },
+    0,
+  );
+
+  // const getSoldTicketRevenue = sellRequestBooing.filter((ticket)=>ticket.payment === "paid")
+
+  if (roleLoading || totalTicketAddedLoading || sellRequestLoading) {
     return <Loading></Loading>;
   }
 
@@ -48,11 +79,11 @@ const VendorDashboardHome = () => {
         </div>
         <div className="font-bold px-10 py-7 rounded-xl text-white bg-linear-to-r from-red-500 to-orange-500">
           <p className="text-2xl pb-2">Total Tickets Sold</p>
-          <h3 className="text-3xl ">15</h3>
+          <h3 className="text-3xl ">{getTotalSoldTicket}</h3>
         </div>
         <div className="font-bold px-10 py-7 rounded-xl text-white bg-linear-to-l from-cyan-500 to-blue-500">
           <p className="text-2xl pb-2">Total Revenue</p>
-          <h3 className="text-3xl ">15</h3>
+          <h3 className="text-3xl ">{getTotalRevenue}</h3>
         </div>
       </div>
       {/* ================= chart ================ */}
