@@ -1,16 +1,101 @@
-# React + Vite
+# TicketZone 🎟️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Online Ticket Booking Platform using the MERN stack where users can discover and book travel tickets (Bus, Train, Launch, Plane etc).
 
-Currently, two official plugins are available:
+## 🎯 Purpose
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+The main purpose of this project is to apply and strengthen the skills I have learned over the last 6 months, including JavaScript (ES6), React, Firebase, Express.js, and MongoDB.
 
-## React Compiler
+Through this project, I aimed to gain practical experience in building a full-stack web application with authentication, database management, role-based dashboards, payment integration, and responsive UI design.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Live Website
 
-## Expanding the ESLint configuration
+https://ticket-zone-client-side.vercel.app/
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Technologies Used
+
+- React
+- Tailwind CSS
+- DaisyUI
+- React Router
+- Firebase Authentication
+- Axios
+- TanStack Query
+- Stripe Payment Gateway
+- Express JS
+- Database : MongoDB
+
+## ✨ Features
+
+- User authentication with Firebase
+- JWT secured private routes
+- Ticket booking system
+- Stripe payment integration
+- Role based dashboard (Admin, Vendor, User)
+- Dynamic charts and statistics
+- Responsive design for mobile and desktop
+
+## 📦 NPM Packages Used
+
+```bash
+tailwindcss
+tanstack/react-query
+axios
+daisyui
+firebase
+lottie-react
+react
+react-countdown
+react-hook-form
+react-icons
+react-router
+react-toastify
+recharts
+swiper
+```
+
+## ⚙️ Installation
+
+Clone the project
+
+```bash
+git clone https://github.com/riday-kumar/ticket-zone-client-side.git
+```
+
+Go to the project directory
+
+```bash
+cd project-name
+```
+
+Install dependencies
+
+```bash
+npm install
+```
+
+Start the development server
+
+```bash
+npm run dev
+```
+
+## 🔐 Environment Variables
+
+Create a `.env.local` file and add:
+
+```env
+VITE_apiKey=your_key
+VITE_authDomain=your_domain
+VITE_projectId=your_project_id
+VITE_storageBucket=your_storageBucket
+VITE_messagingSenderId=your_messagingSenderId
+VITE_appId=your_appId
+VITE_IMG_BB_API=your_IMG_BB_API
+```
+
+## 📸 Screenshots
+
+## 👨‍💻 Developer
+
+Hridoy Kumar Saha
