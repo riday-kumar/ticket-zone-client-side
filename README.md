@@ -23,7 +23,7 @@ https://ticket-zone-client-side.vercel.app/
 - Axios
 - TanStack Query
 - Stripe Payment Gateway
-- Express JS
+- Backend : Express JS
 - Database : MongoDB
 
 ## ✨ Features
