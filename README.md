@@ -1,3 +1,4 @@
+
 # TicketZone 🎟️
 
 A Online Ticket Booking Platform using the MERN stack where users can discover and book travel tickets (Bus, Train, Launch, Plane etc).
@@ -96,6 +97,8 @@ VITE_IMG_BB_API=your_IMG_BB_API
 ```
 
 ## 📸 Screenshots
+<img width="1920" height="5570" alt="ticket-zone-client" src="https://github.com/user-attachments/assets/a40e70f2-9ff1-4149-92f8-282b7a953ad1" />
+
 
 ## 👨‍💻 Developer
 
