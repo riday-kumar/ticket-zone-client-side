@@ -70,7 +70,7 @@ const VendorDashboardHome = () => {
 
   return (
     <div className="space-y-10">
-      <div className="grid md:grid-cols-3 gap-5 lg:gap-10">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-10">
         <div className="font-bold px-10 py-7 rounded-xl text-white bg-linear-to-r from-emerald-500 to-emerald-900">
           <p className="text-2xl pb-2">Total Tickets Added</p>
           <h3 className="text-3xl ">{totalTicketAdded.length}</h3>
@@ -85,7 +85,7 @@ const VendorDashboardHome = () => {
         </div>
       </div>
       {/* ================= chart ================ */}
-      <div className="p-5 w-[50%] 70vh bg-sky-100 mx-auto shadow-xl">
+      <div className="p-5 w-full md:w-[70%] lg:w-[50%] 70vh bg-sky-100 mx-auto shadow-xl">
         <BarChart
           style={{
             width: "100%",

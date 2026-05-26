@@ -186,7 +186,7 @@ const MyTickets = () => {
                   </div>
 
                   {/* Buttons */}
-                  <div className="card-actions justify-end mt-5">
+                  <div className="sm:card-actions sm:justify-end mt-5">
                     <button
                       onClick={() => showDataInUpdateForm(ticket)}
                       disabled={isRejected}

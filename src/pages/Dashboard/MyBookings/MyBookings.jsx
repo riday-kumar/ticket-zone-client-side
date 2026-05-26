@@ -55,7 +55,7 @@ const MyBookings = () => {
       return <span className="text-red-500 font-bold">Already Departed</span>;
     }
     return (
-      <div className="grid grid-cols-4 gap-2 text-center">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-4 sm:gap-2 text-center">
         {/* Days */}
         <div className="bg-base-100 rounded-xl p-3 shadow">
           <h2 className="text-2xl font-bold">{days}</h2>
@@ -104,9 +104,12 @@ const MyBookings = () => {
   return (
     <div>
       <DashboardHeading heading="My Bookings"></DashboardHeading>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5">
         {myBookings.map((booking, index) => (
-          <div key={index} className="bg-[#c7eee6] p-4 card w-96 shadow-sm">
+          <div
+            key={index}
+            className="bg-[#c7eee6] p-2 sm:p-4 card w-full lg:w-96 shadow-sm"
+          >
             <figure className="rounded-4xl">
               <img
                 className="h-50 w-full"
@@ -122,7 +125,7 @@ const MyBookings = () => {
                 {booking.ticketBooingCombineData[0].ticketFrom} to{" "}
                 {booking.ticketBooingCombineData[0].ticketTo}
               </h3>
-              <div className="flex justify-between items-center text-[18px] font-bold">
+              <div className="sm:flex justify-between items-center text-[18px] font-bold">
                 <h3 className="flex gap-2 justify-center items-center">
                   <GiTicket />
                   Quantity : {booking.ticketQuantity}

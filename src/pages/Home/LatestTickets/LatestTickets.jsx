@@ -29,7 +29,9 @@ const LatestTickets = ({ latestTickets }) => {
         ))}
       </div>
       <div className="flex justify-center mt-15">
-        <Link className="btn btn-lg btn-grad">All Tickets</Link>
+        <Link to="/all-tickets" className="btn btn-lg btn-grad">
+          All Tickets
+        </Link>
       </div>
     </div>
   );

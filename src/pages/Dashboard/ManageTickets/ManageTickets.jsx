@@ -95,7 +95,7 @@ const ManageTickets = () => {
           <tbody>
             {vendorTickets.map((ticket, index) => (
               <tr key={index} className="mb-2">
-                <th className="flex gap-2">
+                <th className="*:mb-3 lg:flex max-xl:flex-col gap-2">
                   <img
                     className="w-15 rounded-lg"
                     src={ticket.photoURL}
@@ -118,7 +118,7 @@ const ManageTickets = () => {
                 >
                   {ticket.status}
                 </td>
-                <td className="flex gap-2">
+                <td className="*:mb-3 lg:flex max-xl:flex-col gap-2">
                   {ticket.status === "approved" && (
                     <button
                       onClick={() => handleReject(ticket._id)}

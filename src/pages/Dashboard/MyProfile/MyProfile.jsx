@@ -36,8 +36,8 @@ const MyProfile = () => {
           {/* Info Section */}
           <div className="space-y-4">
             {/* Name */}
-            <div className="flex items-center gap-4 bg-base-200 p-4 rounded-xl">
-              <div className="bg-primary text-primary-content p-3 rounded-full">
+            <div className="sm:flex items-center gap-4 bg-base-200 p-4 rounded-xl">
+              <div className="bg-primary text-primary-content p-3 sm:rounded-full max-sm:w-10">
                 <FaUserCircle size={20} />
               </div>
 
@@ -48,8 +48,8 @@ const MyProfile = () => {
             </div>
 
             {/* Email */}
-            <div className="flex items-center gap-4 bg-base-200 p-4 rounded-xl">
-              <div className="bg-primary text-primary-content p-3 rounded-full">
+            <div className="sm:flex items-center gap-4 bg-base-200 p-4 rounded-xl">
+              <div className="bg-primary text-primary-content p-3 sm:rounded-full max-sm:w-10">
                 <FaEnvelope size={18} />
               </div>
 
@@ -62,8 +62,8 @@ const MyProfile = () => {
             </div>
 
             {/* Role */}
-            <div className="flex items-center gap-4 bg-base-200 p-4 rounded-xl">
-              <div className="bg-primary text-primary-content p-3 rounded-full">
+            <div className="sm:flex items-center gap-4 bg-base-200 p-4 rounded-xl">
+              <div className="bg-primary text-primary-content p-3 sm:rounded-full max-sm:w-10">
                 <FaUserShield size={18} />
               </div>
 
@@ -77,12 +77,12 @@ const MyProfile = () => {
           </div>
 
           {/* Button */}
-          <div className="mt-8">
+          {/* <div className="mt-8">
             <button className="btn btn-primary w-full rounded-xl text-base">
               <FaEdit />
               Edit Profile
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

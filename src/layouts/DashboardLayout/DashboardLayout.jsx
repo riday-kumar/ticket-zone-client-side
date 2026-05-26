@@ -8,6 +8,7 @@ import { NavLink, Outlet } from "react-router";
 import useCheckUserRole from "../../hooks/useCheckUserRole";
 import Loading from "../../components/SharedComponent/Loading";
 import Logo from "../../components/SharedComponent/Logo";
+import { IoBarChart } from "react-icons/io5";
 
 const DashboardLayout = () => {
   const { role, roleLoading } = useCheckUserRole();
@@ -19,7 +20,7 @@ const DashboardLayout = () => {
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content">
         {/* Navbar */}
-        <nav className="h-20 navbar w-full bg-sky-400">
+        <nav className="max-sm:hidden h-20 navbar w-full bg-sky-400">
           <div className="px-4 font-bold text-white">
             <Logo></Logo>
           </div>
@@ -38,6 +39,19 @@ const DashboardLayout = () => {
             <p className="font-medium">Latest Overview.</p>
           </div>
           <ul className="menu w-full grow space-y-4">
+            {/* site home page : max-sm*/}
+            <li className="sm:hidden">
+              <NavLink
+                to="/"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Home"
+              >
+                {/* Home icon */}
+                <FaHome className="my-1.5 inline-block size-4" />
+                <span className="is-drawer-close:hidden">Ticket Zone</span>
+              </NavLink>
+            </li>
+
             {/* Dashboard Home Page */}
             <li>
               <NavLink
@@ -46,7 +60,7 @@ const DashboardLayout = () => {
                 data-tip="Dashboard Home"
               >
                 {/* Home icon */}
-                <FaHome className="my-1.5 inline-block size-4" />
+                <IoBarChart className="my-1.5 inline-block size-4" />
                 <span className="is-drawer-close:hidden">Dashboard Home</span>
               </NavLink>
             </li>

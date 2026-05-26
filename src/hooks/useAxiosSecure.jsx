@@ -24,10 +24,19 @@ const useAxiosSecure = () => {
       // this function will handle errors
       (error) => {
         const statusCode = error.response.status;
+        console.log(typeof statusCode);
+        if ((statusCode === 401 || statusCode === 403) && user) {
+          logOut()
+            .then(() => {
+              navigate("/login");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+
         if (statusCode === 401 || statusCode === 403) {
-          logOut().then(() => {
-            navigate("/login");
-          });
+          navigate("/login");
         }
         return Promise.reject(error);
       },
@@ -36,9 +45,9 @@ const useAxiosSecure = () => {
     // clean the interceptor
     return () => {
       instance.interceptors.request.eject(requestInterceptor);
-      instance.interceptors.request.eject(responseInterceptor);
+      instance.interceptors.response.eject(responseInterceptor);
     };
-  }, [logOut, navigate, user?.accessToken]);
+  }, [logOut, navigate, user]);
 
   return instance;
 };

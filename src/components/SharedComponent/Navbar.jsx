@@ -23,9 +23,9 @@ const Navbar = () => {
       });
     });
   };
-  if (loading) {
-    return <Loading></Loading>;
-  }
+  // if (loading) {
+  //   return <Loading></Loading>;
+  // }
   return (
     <div className="bg-white z-50 shadow-sm sticky top-0">
       <div className="navbar custom-container">
@@ -102,10 +102,17 @@ const Navbar = () => {
             </ul>
           </div>
           <Logo></Logo>
-          {user && (
+
+          {user.photoURL ? (
             <img
               className="absolute right-3 md:hidden animate-pulse rounded-full border-2 border-primary w-10"
               src={user?.photoURL}
+              alt=""
+            />
+          ) : (
+            <img
+              className="absolute right-3 md:hidden animate-pulse rounded-full border-2 border-primary w-10"
+              src="https://img.icons8.com/?size=100&id=kDoeg22e5jUY&format=png&color=000000"
               alt=""
             />
           )}
