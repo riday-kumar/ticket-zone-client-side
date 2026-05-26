@@ -28,7 +28,8 @@ https://ticket-zone-client-side.vercel.app/
 ## ✨ Features
 
 - User authentication with Firebase
-- JWT secured private routes
+- Firebase token verification
+- Secure private routes using Firebase Admin SDK
 - Ticket booking system
 - Stripe payment integration
 - Role based dashboard (Admin, Vendor, User)
