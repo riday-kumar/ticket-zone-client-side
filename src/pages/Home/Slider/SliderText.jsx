@@ -1,3 +1,5 @@
+import { Link } from "react-router";
+
 const SliderText = ({ img, heading, para }) => {
   return (
     <div
@@ -11,7 +13,9 @@ const SliderText = ({ img, heading, para }) => {
         <p className="text-[18px] lg:text-2xl font-medium text-[#F5F5F5]">
           {para}
         </p>
-        <button className="btn btn-slide-btn">Explore Now</button>
+        <Link to="/all-tickets" className="btn btn-slide-btn">
+          Explore Now
+        </Link>
       </div>
     </div>
   );

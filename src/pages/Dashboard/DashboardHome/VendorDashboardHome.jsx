@@ -60,11 +60,11 @@ const VendorDashboardHome = () => {
   const data = [
     {
       name: "Total Tickets Added",
-      number: 50,
+      number: getTotalSoldTicket,
     },
     {
       name: "Total Tickets Sold",
-      number: 20,
+      number: getTotalRevenue,
     },
   ];
 
