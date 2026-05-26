@@ -5,6 +5,7 @@ import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import Loading from "../../../components/SharedComponent/Loading";
 const MyTickets = () => {
   const { user } = useAuth();
   const email = user?.email;
@@ -17,13 +18,21 @@ const MyTickets = () => {
 
   const { register, handleSubmit, reset } = useForm();
 
-  const { data: myAddedTickets = [], refetch } = useQuery({
+  const {
+    isLoading: myAddedTicketsLoading,
+    data: myAddedTickets = [],
+    refetch,
+  } = useQuery({
     queryKey: ["myAddedTickets", email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/tickets?email=${email}`);
       return res.data;
     },
   });
+
+  if (myAddedTicketsLoading) {
+    return <Loading></Loading>;
+  }
 
   const showDataInUpdateForm = (ticket) => {
     modalRef.current.showModal();
@@ -42,7 +51,7 @@ const MyTickets = () => {
   };
 
   const handleUpdateForm = (data) => {
-    console.log(data);
+    // console.log(data);
     const ticketTitle = data.ticketTitle;
     const ticketFrom = data.ticketFrom;
     const ticketTo = data.ticketTo;
@@ -63,7 +72,7 @@ const MyTickets = () => {
       perks,
     };
 
-    console.log(updatedTicket);
+    // console.log(updatedTicket);
 
     const selectedId = selectedTicket._id;
 

@@ -7,7 +7,7 @@ const PrivateRoute = ({ children }) => {
 
   const location = useLocation();
   const currentPath = location.pathname;
-  console.log(currentPath);
+  // console.log(currentPath);
 
   if (loading) {
     return <Loading></Loading>;

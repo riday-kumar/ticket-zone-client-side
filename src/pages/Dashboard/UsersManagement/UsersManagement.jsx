@@ -3,18 +3,27 @@ import DashboardHeading from "../../../components/DashboardHeading";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import Loading from "../../../components/SharedComponent/Loading";
 
 const UsersManagement = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
-  const { data: allUsers = [], refetch } = useQuery({
+  const {
+    isLoading: allUsersLoading,
+    data: allUsers = [],
+    refetch,
+  } = useQuery({
     queryKey: ["allUsers", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get("users");
       return res.data;
     },
   });
+
+  if (allUsersLoading) {
+    return <Loading></Loading>;
+  }
 
   const handleMakeAdmin = (id) => {
     Swal.fire({

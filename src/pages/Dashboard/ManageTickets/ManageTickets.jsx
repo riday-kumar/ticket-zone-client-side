@@ -3,13 +3,18 @@ import DashboardHeading from "../../../components/DashboardHeading";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useRef, useState } from "react";
 import Swal from "sweetalert2";
+import Loading from "../../../components/SharedComponent/Loading";
 
 const ManageTickets = () => {
   const [selectedTicket, setSelectedTicket] = useState("");
   const axiosSecure = useAxiosSecure();
   const ticketModal = useRef(null);
 
-  const { data: vendorTickets = [], refetch } = useQuery({
+  const {
+    isLoading: vendorTicketsLoading,
+    data: vendorTickets = [],
+    refetch,
+  } = useQuery({
     queryKey: ["vendorTickets"],
     queryFn: async () => {
       const res = await axiosSecure.get("/vendors-added-tickets");
@@ -17,6 +22,10 @@ const ManageTickets = () => {
     },
   });
   // console.log(vendorTickets);
+
+  if (vendorTicketsLoading) {
+    return <Loading></Loading>;
+  }
 
   const handleShowModal = (ticket) => {
     ticketModal.current.showModal();
@@ -35,7 +44,7 @@ const ManageTickets = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.patch(`/approve-ticket/${id}`).then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data.modifiedCount === 1) {
             refetch();
             Swal.fire({
@@ -61,7 +70,7 @@ const ManageTickets = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure.patch(`/reject-ticket/${id}`).then((res) => {
-          console.log(res);
+          // console.log(res);
           if (res.data.modifiedCount === 1) {
             refetch();
             Swal.fire({

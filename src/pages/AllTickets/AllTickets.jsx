@@ -27,7 +27,7 @@ const AllTickets = () => {
       },
     });
 
-  console.log(allLatestTickets);
+  // console.log(allLatestTickets);
 
   if (allLatestTicketsLoading) {
     return <Loading></Loading>;
@@ -40,7 +40,7 @@ const AllTickets = () => {
     const type = e.target.type.value;
     const sort = e.target.sort.value;
     setSearchText({ from, to, type, sort });
-    console.log({ from, to, type, sort });
+    // console.log({ from, to, type, sort });
   };
 
   const handleResetForm = () => {

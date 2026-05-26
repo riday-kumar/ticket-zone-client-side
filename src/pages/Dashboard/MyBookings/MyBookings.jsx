@@ -21,7 +21,7 @@ const MyBookings = () => {
     },
   });
 
-  console.log(myBookings);
+  // console.log(myBookings);
 
   if (dataLoading) {
     return <Loading></Loading>;

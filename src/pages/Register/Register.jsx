@@ -34,7 +34,7 @@ const Register = () => {
       .then((res) => {
         if (res.user) {
           axiosSecure.post("/users", newUser).then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.data.acknowledged) {
               toast.success("Sign up Successfully!", {
                 position: "top-right",
@@ -52,7 +52,7 @@ const Register = () => {
         }
       })
       .catch((err) => {
-        console.log(err.message);
+        // console.log(err.message);
         if (err.message == "Firebase: Error (auth/email-already-in-use).") {
           toast.error("User Already Exists. Please Log in!", {
             position: "top-right",
@@ -78,7 +78,7 @@ const Register = () => {
             email: res.user.email,
           };
           axiosSecure.post("/users", newUser).then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.data.acknowledged || data.data === "user already exists") {
               Swal.fire({
                 position: "center",
@@ -93,7 +93,7 @@ const Register = () => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
   };
   return (

@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router";
 
 const instance = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://ticket-zone-server.vercel.app",
 });
 
 const useAxiosSecure = () => {
@@ -24,14 +24,14 @@ const useAxiosSecure = () => {
       // this function will handle errors
       (error) => {
         const statusCode = error.response.status;
-        console.log(typeof statusCode);
+        // console.log(typeof statusCode);
         if ((statusCode === 401 || statusCode === 403) && user) {
           logOut()
             .then(() => {
               navigate("/login");
             })
             .catch((err) => {
-              console.log(err);
+              // console.log(err);
             });
         }
 

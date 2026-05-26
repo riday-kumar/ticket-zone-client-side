@@ -8,7 +8,10 @@ const PaymentHistory = () => {
   const axiosSecure = useAxiosSecure();
   const { role, roleLoading } = useCheckUserRole();
 
-  const { data: transactionHistory = [] } = useQuery({
+  const {
+    isLoading: transactionHistoryLoading,
+    data: transactionHistory = [],
+  } = useQuery({
     queryKey: ["transactionHistory"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/my-transaction?email=${role.email}`);
@@ -16,11 +19,11 @@ const PaymentHistory = () => {
     },
   });
 
-  if (roleLoading) {
+  if (roleLoading || transactionHistoryLoading) {
     return <Loading></Loading>;
   }
 
-  console.log(transactionHistory);
+  // console.log(transactionHistory);
 
   if (transactionHistory.length === 0) {
     return (

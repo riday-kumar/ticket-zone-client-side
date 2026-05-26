@@ -2,7 +2,7 @@ import SectionHeading from "../../../components/SectionHeading";
 import Card from "../../../components/SharedComponent/Card";
 
 const FeaturedTickets = ({ advertiseTickets }) => {
-  console.log(advertiseTickets);
+  // console.log(advertiseTickets);
   return (
     <div className="">
       <SectionHeading

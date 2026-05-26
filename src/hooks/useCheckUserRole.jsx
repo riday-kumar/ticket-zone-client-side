@@ -15,7 +15,7 @@ const useCheckUserRole = () => {
     },
   });
 
-  console.log(role);
+  // console.log(role);
 
   return { roleLoading, role };
 };

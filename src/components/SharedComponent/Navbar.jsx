@@ -1,12 +1,11 @@
 import { NavLink } from "react-router";
 import Logo from "./Logo";
 import useAuth from "../../hooks/useAuth";
-import Loading from "./Loading";
+
 import { toast } from "react-toastify";
-import { FaCircleUser } from "react-icons/fa6";
 
 const Navbar = () => {
-  const { user, loading, logOut } = useAuth();
+  const { user, logOut } = useAuth();
   // console.log(user);
 
   const handleLogOut = () => {
@@ -103,7 +102,7 @@ const Navbar = () => {
           </div>
           <Logo></Logo>
 
-          {user.photoURL ? (
+          {user?.photoURL ? (
             <img
               className="absolute right-3 md:hidden animate-pulse rounded-full border-2 border-primary w-10"
               src={user?.photoURL}

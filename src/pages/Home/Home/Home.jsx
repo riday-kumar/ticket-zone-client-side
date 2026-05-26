@@ -23,7 +23,7 @@ const Home = () => {
   }, [axiosSecure]);
 
   const fewTickets = latestTickets.slice(0, 8);
-  console.log(fewTickets);
+  // console.log(fewTickets);
 
   return (
     <div className="*:mb-20">

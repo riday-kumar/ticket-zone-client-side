@@ -2,17 +2,26 @@ import { useQuery } from "@tanstack/react-query";
 import DashboardHeading from "../../../components/DashboardHeading";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import Loading from "../../../components/SharedComponent/Loading";
 
 const AdvertiseTickets = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: advertiseTickets = [], refetch } = useQuery({
+  const {
+    isLoading: advertiseTicketsLoading,
+    data: advertiseTickets = [],
+    refetch,
+  } = useQuery({
     queryKey: ["advertiseTickets"],
     queryFn: async () => {
       const res = await axiosSecure.get("/approved-tickets?type=all-type");
       return res.data;
     },
   });
+
+  if (advertiseTicketsLoading) {
+    return <Loading></Loading>;
+  }
 
   const handleShowAdvertise = (id) => {
     axiosSecure.patch(`/advertise-tickets/${id}?advertise=yes`).then((res) => {
