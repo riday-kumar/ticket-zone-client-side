@@ -13,7 +13,7 @@ const SliderText = ({ img, heading, para }) => {
         <p className="text-[18px] lg:text-2xl font-medium text-[#F5F5F5]">
           {para}
         </p>
-        <Link to="/all-tickets" className="btn btn-slide-btn">
+        <Link to="/all-tickets" className="p-2 font-bold btn-slide-btn">
           Explore Now
         </Link>
       </div>
