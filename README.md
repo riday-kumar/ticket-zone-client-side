@@ -7,11 +7,19 @@ A Online Ticket Booking Platform using the MERN stack where users can discover a
 
 The main purpose of this project is to apply and strengthen the skills I have learned over the last 6 months, including JavaScript (ES6), React, Firebase, Express.js, and MongoDB.
 
-Through this project, I aimed to gain practical experience in building a full-stack web application with authentication, database management, role-based dashboards, payment integration, and responsive UI design.
+**Through this project, I aimed to gain practical experience in building a full-stack web application with authentication, database management, role-based dashboards, payment integration, and responsive UI design.**
 
 ## 🚀 Live Website
 
 https://ticket-zone-client-side.vercel.app/
+
+```
+Admin email : hridoykumarsaha07@gmail.com
+Admin Password : PHLevel1+@
+
+vendor email : hkssaha@gmail.com
+vendor Password :PHLevel2+@
+```
 
 ## 🛠️ Technologies Used
 
