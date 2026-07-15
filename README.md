@@ -9,6 +9,16 @@ The main purpose of this project is to apply and strengthen the skills I have le
 
 **Through this project, I aimed to gain practical experience in building a full-stack web application with authentication, database management, role-based dashboards, payment integration, and responsive UI design.**
 
+## ✨ Features
+
+- User authentication with Firebase
+- Secure private routes using Firebase Admin SDK
+- Ticket booking system
+- Stripe payment integration
+- Role based dashboard (Admin, Vendor, User)
+- Dynamic charts and statistics
+
+
 ## 🚀 Live Website
 
 https://ticket-zone-client-side.vercel.app/
@@ -33,17 +43,6 @@ vendor Password :PHLevel2+@
 - Stripe Payment Gateway
 - Backend : Express JS
 - Database : MongoDB
-
-## ✨ Features
-
-- User authentication with Firebase
-- Firebase token verification
-- Secure private routes using Firebase Admin SDK
-- Ticket booking system
-- Stripe payment integration
-- Role based dashboard (Admin, Vendor, User)
-- Dynamic charts and statistics
-- Responsive design for mobile and desktop
 
 ## 📦 NPM Packages Used
 
